@@ -1,0 +1,50 @@
+@import "../../common/colors.scss";
+
+.person-details {
+  margin-bottom: 4rem;
+
+  &__info {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 5rem;
+    margin-bottom: 2rem;
+  }
+
+  &__image-wrapper {
+    position: relative;
+    height: 0;
+    padding-bottom: 150%;
+    box-shadow: 0px 4px 15px 0px rgba($dark-color, 0.8);
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.bio {
+  &__title {
+    margin: 0 0 0.5rem 0;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
+
+  &__text {
+    margin: 0 0 2rem 0;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  &__born {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    span {
+      font-weight: 700;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@import "../../common/colors.scss";
+
+.image-gallery {
+  &__current {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__current-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: transform 20s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+    }
+  }
+
+  &__title {
+    margin: 0 0 1rem 0;
+  }
+
+  .carousel__content {
+    img {
+      // border: 0.15rem solid transparent;
+      
+      &:hover {
+        transition: border-color 0.15s ease-in-out;
+        border-color: rgba($border-color, 0.5);
+      }
+    }
+  }
+}

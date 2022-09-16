@@ -1,0 +1,46 @@
+@import '../../common/colors.scss';
+
+.movie-credits-info {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 5rem;
+
+  &__descr {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    align-self: flex-end;
+  }
+
+  &__name {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 2rem;
+  }
+
+  &__name-link {
+    font-family: inherit;
+    color: $yellow;
+    transition: color .15s ease-in-out;
+
+    &:hover {
+      color: $soft-red;
+    }
+  }
+
+  &__name-year {
+    font-family: inherit;
+
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 3rem;
+  }
+
+  &__image {
+    width: 12rem;
+  }
+}

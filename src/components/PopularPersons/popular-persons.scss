@@ -1,0 +1,63 @@
+@import "../../common/colors.scss";
+.popular-persons {
+
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1;
+    color: $yellow;
+
+    span {
+      color: $soft-red;
+    }
+  }
+}
+
+.popular-person {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+
+  &:hover {
+    .popular-person__image {
+      box-shadow: 2px 2px 5px rgba($dark-color, 0.7);
+    }
+
+    .person-info {
+      color: $yellow;
+    }
+  }
+
+  &__image {
+    width: 5rem;
+    height: 6rem;
+    margin-right: 1rem;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 1rem;
+    transition: box-shadow 0.15s ease-in-out;
+  }
+}
+
+.person-info {
+  color: $font-primary;
+  transition: color 0.15s ease-in-out;
+
+  &__name {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  &__role {
+    color: $font-secondary;
+    font-weight: 300;
+    transition: color 0.15s ease-in-out;
+  }
+}

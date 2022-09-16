@@ -1,0 +1,23 @@
+@import "../../common/colors.scss";
+
+.similar {
+
+  &__title {
+    margin: 0 0 1rem 0;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+
+  .card img {
+    transition: border-color 0.15s ease-in-out;
+    border: 0.15rem solid transparent;
+
+    &:hover {
+      border-color: $border-color;
+    }
+  }
+}

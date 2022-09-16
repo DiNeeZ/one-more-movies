@@ -1,0 +1,42 @@
+@import "../../common/colors.scss";
+
+.recently-viewed {
+  padding-top: 7.5rem;
+
+  &__title {
+    margin: 0 0 1rem 0;
+    align-self: flex-start;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1;
+    color: $yellow;
+
+    span {
+      color: $soft-red;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+
+  .card {
+   
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: $bg-gradient;
+      opacity: 0;
+      transition: opacity 0.15s ease-in-out;
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+}

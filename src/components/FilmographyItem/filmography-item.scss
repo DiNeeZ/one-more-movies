@@ -1,0 +1,41 @@
+.filmography-item {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  padding: 0.5rem 0;
+
+  &__image {
+    width: 5rem;
+    height: 7.5rem;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__info {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 2rem;
+  }
+
+  &__title {
+    margin: 0 0 1rem 0;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .genres {
+    span {
+      font-size: 0.9rem;
+      &:not(:last-child)::after {
+        content: '|';
+      }
+    }
+  }
+
+  &__release-date {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,24 @@
+@import "../../common/colors.scss";
+
+.home {
+  padding: 6rem 0 4rem;
+
+  &__container {
+    min-height: 100vh;
+    display: flex;
+    gap: 5rem;
+    justify-content: space-between;
+  }
+
+  &__content {
+    flex: 1 1 auto;
+  }
+
+  &__sidebar {
+    flex: 1 0 17rem;
+  }
+
+  .upcoming-movies {
+    margin-bottom: 5rem;
+  }
+}

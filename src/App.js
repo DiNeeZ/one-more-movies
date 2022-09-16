@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
+import Layout from './components/Layout/Layout'
+import Home from './routes/Home/Home'
+import Details from './routes/Details/Details'
+import PersonPage from './routes/PersonPage'
+import Credits from './routes/Credits/Credits'
+import PageNotFound from './components/PageNotFound/PageNotFound'
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ScrollToTop>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route path='*' element={<PageNotFound />} />
+          <Route index element={<Home />} />
+          <Route path='/:mediaType/:id' element={<Details />} />
+          <Route path='/person/:personId' element={<PersonPage />} />
+          <Route path='/credits/:mediaType/:movieId' element={<Credits />} />
+        </Route>
+      </Routes>
+    </ScrollToTop>
+  )
 }
 
-export default App;
+export default App

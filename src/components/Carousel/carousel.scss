@@ -1,0 +1,110 @@
+@import "../../common/colors.scss";
+
+.carousel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    position: relative;
+  }
+
+  &__content-wrapper {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__content {
+    display: flex;
+    transition: all 0.4s linear;
+    -ms-overflow-style: none; /* hide scrollbar in IE and Edge */
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none; /* hide scrollbar in webkit browser */
+    }
+
+    & > * {
+      display: flex;
+      width: 100%;
+      flex-shrink: 0;
+      overflow: hidden;
+      cursor: pointer;
+      border: 0.15rem solid transparent;
+
+    }
+
+    &.items-2 > * {
+      width: calc(100% / 2);
+      flex-shrink: 0;
+    }
+
+    &.items-3 > * {
+      width: calc(100% / 3);
+    }
+
+    &.items-4 > * {
+      width: calc(100% / 4);
+      flex-grow: 0;
+      flex-shrink: 1;
+      flex-basis: 100%;
+    }
+  }
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: $font-primary;
+  background: none;
+  border: none;
+  z-index: 1;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &--left {
+    left: -2rem;
+
+    &:hover:not(:disabled) {
+      transform: translate(-2px, -50%);
+    }
+  }
+
+  &--right {
+    right: -2rem;
+
+    &:hover:not(:disabled) {
+      transform: translate(2px, -50%);
+    }
+  }
+
+  &:disabled {
+    color: rgba($font-primary, 0.2);
+  }
+}
+
+.dots {
+  display: flex;
+  gap: 0.25rem;
+  position: absolute;
+  left: 50%;
+  bottom: -1rem;
+  transform: translateX(-50%);
+
+  &__item {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: $font-primary;
+    cursor: pointer;
+
+    &--current {
+      background-color: $border-color;
+    }
+  }
+}

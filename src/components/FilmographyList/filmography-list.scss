@@ -1,0 +1,65 @@
+@import "../../common/colors.scss";
+
+.filmography-list {
+  .ReactCollapse--collapse {
+    width: 100%;
+    transition: height 0.3s linear;
+  }
+
+  &__list {
+    li {
+      background-color: rgba($dark-color, 0.5);
+      transition: background-color 0.15s ease-in-out;
+      &:nth-child(odd) {
+        background-color: rgba($dark-color, 0.25);
+      }
+
+      &:hover {
+        background-color: rgba($dark-color, 0.75);
+      }
+    }
+  }
+}
+
+.list-header {
+  display: flex;
+  align-items: center;
+  background-color: $dark-color;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+
+  &:hover, 
+  &:focus {
+    background-color: rgba($dark-color, 0.7);
+  }
+
+  &.half-bordered {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &__heading {
+    height: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 1rem;
+    cursor: pointer;
+    transition: color 0.15s ease-in-out;
+
+    &:hover {
+      color: $yellow;
+    }
+  }
+
+  &__sort {
+    background-color: transparent;
+  }
+  &__title {
+    margin: 0;
+    font-weight: 700;
+  }
+}
