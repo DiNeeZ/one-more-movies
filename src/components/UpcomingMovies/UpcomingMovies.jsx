@@ -9,6 +9,7 @@ import Genres from '../Genres/Genres'
 import WatchTrailer from '../WatchTrailer/WatchTrailer'
 import Aspect16on9Skeleton from '../../skeletons/Aspect16on9Skeleton'
 import ErrorIndicator from '../ErrorIndicator/ErrorIndicator'
+import imagePlaceholder from '../../images/placeholder-16x9.jpg'
 
 import './upcoming-movies.scss'
 
@@ -34,11 +35,14 @@ const UpcomingMovies = () => {
       key={movie.id}
     >
       <div className='upcoming-movie__image-wrapper'>
-        <CustomImage
-          className='upcoming-movie__image'
-          src={movie.backdropPath.image}
-          placeholder={movie.backdropPath.preview}
-          alt={movie.title} />
+        {movie.backdropPath.image ?
+          <CustomImage
+            className='upcoming-movie__image'
+            src={movie.backdropPath.image}
+            placeholder={movie.backdropPath.preview}
+            alt={movie.title} /> :
+          <img src={imagePlaceholder} alt={movie.title} />
+        }
       </div>
       <div className='upcoming-movie__info'>
         <div className='upcoming-movie__descr'>

@@ -7,6 +7,7 @@ import './filmography-item.scss'
 const FilmographyItem = ({ item }) => {
  
   const title = item.title || item.name
+  const date = item.releaseDate || item.firstAirDate
   return (
     <Link className='filmography-item' to={`/${item.mediaType}/${item.id}`}>
       <CustomImage
@@ -21,7 +22,7 @@ const FilmographyItem = ({ item }) => {
           <Genres genres={item.genres} />
         </div>
         <span className='filmography-item__release-date'>
-          {item.releaseDate?.split('-')[0]}
+          {date?.split('-')[0]}
         </span>
       </div>
     </Link>

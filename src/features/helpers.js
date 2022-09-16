@@ -56,10 +56,19 @@ export class responseTransformer {
     const genres = await this._getGenres()
     return res.results.map(obj => {
       obj = this.transformMovie(obj)
-      obj.genres = extractGenres(genres.data.genres, obj.genreIds)
+      obj.genres = this._extractGenres(genres.data.genres, obj.genreIds)
       obj.mediaType = 'movie'
       return obj
     })
+  }
+
+  transformSimilar = async (res, mediaType) => {
+    const genres = await this._getGenres()
+    return res.results.map(obj => {
+      obj = this.transformMovie(obj, mediaType)
+      obj.genres = this._extractGenres(genres.data.genres, obj.genreIds)
+      return obj
+    }).slice(0, 10)
   }
 
   transformPopularPersons = (res) => {
@@ -76,110 +85,55 @@ export class responseTransformer {
       const { official, site, type } = trailer
       return [official, site === 'YouTube', (type === 'Trailer' || type === 'Teaser')].every(Boolean)
     }
-  
+
     const filteredTrailers = res.results.filter(filterTrailers)
     const sortedTrailers = [...filteredTrailers]
       .sort((a, b) => new Date(b.published_at) - new Date(a.published_at))
     const trailers = sortedTrailers.filter(trailer => trailer.type === 'Trailer')
     const teasers = sortedTrailers.filter(trailer => trailer.type === 'Teaser')
-  
+
     return [...trailers, ...teasers]
   }
-}
 
-const extractGenres = (allGenres, genreIds) => allGenres.filter(genre => genreIds?.includes(genre.id))
+  transformImages = (res) => res.backdrops.map(image => ({
+    id: this._extractImageId(image.file_path),
+    imageUrl: this._getBackdropPath(image.file_path)
+  }))
 
-const getGenres = async () => {
-  return await MOVIE_API
-    .get(`genre/movie/list?api_key=${API_KEY}&language=en-US`)
-}
+  transformCredits = (res, genres) => {
+    const cast = res.cast.map(obj => {
+      obj = camelizeObjectKeys(obj)
+      obj.profilePath = this._getProfilePath(obj.profilePath)
+      obj.posterPath = this._getPosterPath(obj.posterPath)
+      obj.genres = genres && this._extractGenres(genres, obj.genreIds)
+      return obj
+    })
 
-const getPosterPath = (path) => ({
-  image: getImageUrl(342, path),
-  preview: getImageUrl(92, path)
-})
+    const transformedCrew = res.crew.map(obj => {
+      obj = camelizeObjectKeys(obj)
+      obj.profilePath = this._getProfilePath(obj.profilePath)
+      obj.posterPath = this._getPosterPath(obj.posterPath)
+      obj.genres = genres && this._extractGenres(genres, obj.genreIds)
+      return obj
+    })
 
-const getBackdropPath = (path) => ({
-  image: getImageUrl(1280, path),
-  preview: getImageUrl(300, path),
-})
+    const uniqueTransformedCrew = getUniqueObjArr(transformedCrew)
+    const director = this._findPerson(uniqueTransformedCrew, 'director')
+    const writer = this._findPerson(uniqueTransformedCrew, 'writer')
+    const producer = this._findPerson(uniqueTransformedCrew, 'producer')
+    const directorOfPhotography = this._findPerson(uniqueTransformedCrew, 'directorOfPhotography')
+    const composer = this._findPerson(uniqueTransformedCrew, 'composer')
+    const stunts = this._findPerson(uniqueTransformedCrew, 'stunts')
 
-const getProfilePath = (path) => ({
-  preview: getImageUrl(45, path),
-  image: getImageUrl(185, path)
-})
-
-const extractImageId = (str) => str.slice(str.indexOf('/') + 1, str.indexOf('.'))
-
-const findPerson = (arr, person) => {
-  const jobs = {
-    director: ['Director'],
-    writer: ['Writer', 'Screenplay', 'Characters', 'Story', 'Book', 'Screenstory'],
-    producer: ['Producer', 'Executive Producer'],
-    directorOfPhotography: ['Director of Photography'],
-    composer: ['Original Music Composer', 'Musician', 'Music Score Producer', 'Orchestrator', 'Music Editor'],
-    stunts: ['Stunts']
+    return { director, writer, producer, directorOfPhotography, composer, stunts, cast: getUniqueObjArr(cast) }
   }
 
-  return arr.filter(item => jobs[person].includes(item.job))
+  transformPersonCredits = async (res) => {
+    const genres = await this._getGenres()
+    const transformedPerson = camelizeObjectKeys(res)
+    transformedPerson.profilePath = this._getProfilePath(transformedPerson.profilePath)
+    transformedPerson.combinedCredits = this.transformCredits(transformedPerson.combinedCredits, genres.data.genres)
+
+    return transformedPerson
+  }
 }
-
-
-
-export const transformSimilar = async (res, mediaType) => {
-  const genres = await getGenres()
-  const transformed = res.results.map(obj => {
-    obj = camelizeObjectKeys(obj)
-    obj.posterPath = getPosterPath(obj.posterPath)
-    obj.genres = extractGenres(genres.data.genres, obj.genreIds)
-    obj.mediaType = mediaType
-    return obj
-  })
-
-  return transformed.slice(0, 10)
-}
-
-export const transformImages = (res) => res.backdrops.map(image => ({
-  id: extractImageId(image.file_path),
-  imageUrl: getBackdropPath(image.file_path)
-}))
-
-export const transformCredits = (res, genres) => {
-  const cast = res.cast.map(obj => {
-    obj = camelizeObjectKeys(obj)
-    obj.profilePath = getProfilePath(obj.profilePath)
-    obj.posterPath = getPosterPath(obj.posterPath)
-    obj.genres = genres && extractGenres(genres, obj.genreIds)
-    return obj
-  })
-
-  const transformedCrew = res.crew.map(obj => {
-    obj = camelizeObjectKeys(obj)
-    obj.profilePath = getProfilePath(obj.profilePath)
-    obj.posterPath = getPosterPath(obj.posterPath)
-    obj.genres = genres && extractGenres(genres, obj.genreIds)
-    return obj
-  })
-
-  const uniqueTransformedCrew = getUniqueObjArr(transformedCrew)
-  const director = findPerson(uniqueTransformedCrew, 'director')
-  const writer = findPerson(uniqueTransformedCrew, 'writer')
-  const producer = findPerson(uniqueTransformedCrew, 'producer')
-  const directorOfPhotography = findPerson(uniqueTransformedCrew, 'directorOfPhotography')
-  const composer = findPerson(uniqueTransformedCrew, 'composer')
-  const stunts = findPerson(uniqueTransformedCrew, 'stunts')
-
-  return { director, writer, producer, directorOfPhotography, composer, stunts, cast: getUniqueObjArr(cast) }
-}
-
-export const transformPersonCredits = async (res) => {
-  const genres = await getGenres()
-  const transformedPerson = camelizeObjectKeys(res)
-  transformedPerson.profilePath = getProfilePath(transformedPerson.profilePath)
-  transformedPerson.combinedCredits = transformCredits(transformedPerson.combinedCredits, genres.data.genres)
-
-  return transformedPerson
-}
-
-
-

@@ -11,15 +11,23 @@ const FilmographyList = ({ list, title }) => {
   const [sortValue, setSortValue] = useState('year')
   const [listRef] = useAutoAnimate()
 
+  const getMovieYear = (movie) => {
+    const date = (movie.releaseDate || movie.firstAirDate)
+    if (!date) return 'Date is Unknown'
+    return Number(date.split('-')[0])
+  }
+
   const handleClick = () => setIsOpen(!isOpen)
   const handleChange = (choice) => setSortValue(choice.value)
-
   const sortListByParameter = (list, param) => {
     switch (param) {
       case 'title':
         return [...list].sort((a, b) => (a.title || a.name).localeCompare(b.title || b.name))
       case 'year':
-        return [...list].sort((a, b) => Number(b.releaseDate?.split('-')[0]) - Number(a.releaseDate?.split('-')[0]))
+        const withYear = list.filter(movie => getMovieYear(movie) !== 'Date is Unknown')
+        const withoutYear = list.filter(movie => getMovieYear(movie) === 'Date is Unknown')
+        const sortedWithYear = [...withYear].sort((a, b) => getMovieYear(b) - getMovieYear(a))
+        return [...sortedWithYear, ...withoutYear]
       default:
         return
     }

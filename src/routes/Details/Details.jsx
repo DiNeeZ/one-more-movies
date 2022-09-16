@@ -4,25 +4,28 @@ import MovieDescr from '../../components/MovieDescr/MovieDescr'
 import DetailsCast from '../../components/DetailsCast/DetailsCast'
 import SimilarMoviesAndShows from '../../components/SimilarMoviesAndShows/SimilarMoviesAndSows'
 import TitleSkeleton from '../../skeletons/TitleSkeleton'
-import ParagraphSkeleton from '../../skeletons/ParagraphSkeleton'
-import MovieDescrSkeleton from '../../skeletons/MovieDescrSkeleton'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetMovieQuery } from '../../features/api/tmdbSlice'
-import './details.scss'
 import { useLocalStorage } from '../../hooks'
-import { useEffect } from 'react'
+
+import ParagraphSkeleton from '../../skeletons/ParagraphSkeleton'
+import MovieDescrSkeleton from '../../skeletons/MovieDescrSkeleton'
+
+import './details.scss'
+
 
 const Details = () => {
-  const [value, setValueToLocalStorage] = useLocalStorage('recentlyViewed', [])
+  const [viewedList, setViewedList] = useLocalStorage('recentlyViewed', [])
   const { id, mediaType } = useParams()
   const { data, isSuccess, isLoading } = useGetMovieQuery({ id, mediaType })
 
   useEffect(() => {
     if (data) {
-      const isInStorage = value.some(item => item.id === data.id)
-      !isInStorage && setValueToLocalStorage([data, ...value].slice(0, 6))
+      const isInStorage = viewedList.some(item => item.id === data.id)
+      !isInStorage && setViewedList([data, ...viewedList].slice(0, 6))
     }
-  }, [data])
+  }, [data, viewedList, setViewedList])
 
   return (
     <section

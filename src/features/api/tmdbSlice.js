@@ -1,17 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { BASE_URL, API_KEY } from '../../utils'
-import {
-  responseTransformer,
-  // transformPopularPersons,
-  // transformTrending,
-  transformUpcoming,
-  transformTrailers,
-  transformSimilar,
-  transformImages,
-  transformCredits,
-  // transformMovie,
-  transformPersonCredits
-} from '../helpers'
+import { responseTransformer } from '../helpers'
 
 const transformer = new responseTransformer()
 
@@ -41,19 +30,19 @@ export const tmdbSlice = createApi({
     }),
     getSimilar: builder.query({
       query: ({ id, mediaType }) => `${mediaType}/${id}/similar?api_key=${API_KEY}`,
-      transformResponse: (res, _, { __, mediaType }) => transformSimilar(res, mediaType)
+      transformResponse: (res, _, { __, mediaType }) => transformer.transformSimilar(res, mediaType)
     }),
     getImages: builder.query({
       query: ({ id, mediaType }) => `${mediaType}/${id}/images?api_key=${API_KEY}`,
-      transformResponse: (res) => transformImages(res)
+      transformResponse: (res) => transformer.transformImages(res)
     }),
     getMovieCredits: builder.query({
       query: ({ id, mediaType }) => `${mediaType}/${id}/credits?api_key=${API_KEY}`,
-      transformResponse: (res) => transformCredits(res)
+      transformResponse: (res) => transformer.transformCredits(res)
     }),
     getPersonCredits: builder.query({
       query: (id) => `person/${id}?api_key=${API_KEY}&language=en-US&append_to_response=combined_credits`,
-      transformResponse: (res) => transformPersonCredits(res)
+      transformResponse: (res) => transformer.transformPersonCredits(res)
     })
   })
 })
