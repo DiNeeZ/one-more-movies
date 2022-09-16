@@ -11,11 +11,11 @@ const PersonDetails = ({ details }) => {
       <div className='person-details__info'>
         <div className='person-details__image-wrapper'>
           {
-            details.imagePath.image ?
+            details.profilePath.image ?
               <CustomImage
                 className='person-details__image'
-                src={details.imagePath.image}
-                placeholder={details.imagePath.preview}
+                src={details.profilePath.image}
+                placeholder={details.profilePath.preview}
                 alt={details.name} />
               :
               <img

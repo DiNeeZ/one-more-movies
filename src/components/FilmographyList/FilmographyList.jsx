@@ -15,18 +15,16 @@ const FilmographyList = ({ list, title }) => {
   const handleChange = (choice) => setSortValue(choice.value)
 
   const sortListByParameter = (list, param) => {
-    if (param === 'title') {
-      return [...list].sort((a, b) => a.title.localeCompare(b.title))
+    switch (param) {
+      case 'title':
+        return [...list].sort((a, b) => (a.title || a.name).localeCompare(b.title || b.name))
+      case 'year':
+        return [...list].sort((a, b) => Number(b.releaseDate?.split('-')[0]) - Number(a.releaseDate?.split('-')[0]))
+      default:
+        return
     }
-
-    if (param === 'year') {
-      return list.filter(listItem => listItem.releaseDate)
-        .sort((a, b) => Number(b.releaseDate?.split('-')[0]) - Number(a.releaseDate?.split('-')[0]))
-    }
-
-    return null
   }
-  
+
   if (!list.length) return null
 
   return (

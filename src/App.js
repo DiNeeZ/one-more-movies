@@ -3,7 +3,7 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 import Layout from './components/Layout/Layout'
 import Home from './routes/Home/Home'
 import Details from './routes/Details/Details'
-import PersonPage from './routes/PersonPage'
+import Person from './routes/Person/Person'
 import Credits from './routes/Credits/Credits'
 import PageNotFound from './components/PageNotFound/PageNotFound'
 
@@ -16,7 +16,7 @@ const App = () => {
           <Route path='*' element={<PageNotFound />} />
           <Route index element={<Home />} />
           <Route path='/:mediaType/:id' element={<Details />} />
-          <Route path='/person/:personId' element={<PersonPage />} />
+          <Route path='/person/:personId' element={<Person />} />
           <Route path='/credits/:mediaType/:movieId' element={<Credits />} />
         </Route>
       </Routes>

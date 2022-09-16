@@ -1,21 +1,18 @@
-import { useSelector } from 'react-redux'
-import { getPerson } from '../../features/persons/personSlice'
 import { capitalizeFirstLetter } from '../../utils'
 import FilmographyList from '../FilmographyList/FilmographyList'
 import './filmography.scss'
 
-const Filmography = ({ credits }) => {
-  const { details: { gender } } = useSelector(getPerson)
+const Filmography = ({ data }) => {
   const actorOrActress = ['Actor (possibly Actress)', 'Actress', 'Actor']
-
+  console.log(data)
   return (
     <div className='filmography'>
       <h2 className='filmography__title'>Filmography</h2>
       <div className='filmography__container'>
         {
-          Object.entries(credits).map(([key, value]) => {
+          Object.entries(data.combinedCredits).map(([key, value]) => {
             if (key === 'cast') {
-              key = actorOrActress[gender]
+              key = actorOrActress[data.gender]
             }
             return (<FilmographyList
               key={key}

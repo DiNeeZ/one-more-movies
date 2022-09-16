@@ -5,18 +5,19 @@ import imagePlaceholder from '../../images/movie-item-placeholder.png'
 import './filmography-item.scss'
 
 const FilmographyItem = ({ item }) => {
-
+ 
+  const title = item.title || item.name
   return (
     <Link className='filmography-item' to={`/${item.mediaType}/${item.id}`}>
       <CustomImage
         className='filmography-item__image'
         src={item.posterPath.image}
         placeholder={imagePlaceholder}
-        alt={item.title}
+        alt={title}
       />
       <div className='filmography-item__info'>
         <div className='filmography-item__descr'>
-          <h4 className='filmography-item__title'>{item.title}</h4>
+          <h4 className='filmography-item__title'>{title}</h4>
           <Genres genres={item.genres} />
         </div>
         <span className='filmography-item__release-date'>

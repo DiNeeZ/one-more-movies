@@ -1,17 +1,19 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { BASE_URL, API_KEY } from '../../utils'
 import {
-  transformPopularPersons,
-  transformTrending,
+  responseTransformer,
+  // transformPopularPersons,
+  // transformTrending,
   transformUpcoming,
   transformTrailers,
   transformSimilar,
   transformImages,
   transformCredits,
-  transformMovie,
+  // transformMovie,
   transformPersonCredits
 } from '../helpers'
 
+const transformer = new responseTransformer()
 
 export const tmdbSlice = createApi({
   reducerPath: 'tmdb',
@@ -19,23 +21,23 @@ export const tmdbSlice = createApi({
   endpoints: (builder) => ({
     getMovie: builder.query({
       query: ({ id, mediaType }) => `${mediaType}/${id}?api_key=${API_KEY}&language=en-US`,
-      transformResponse: (res, _, { __, mediaType }) => transformMovie(res, mediaType)
+      transformResponse: (res, _, { __, mediaType }) => transformer.transformMovie(res, mediaType)
     }),
     getPopularPersons: builder.query({
       query: () => `person/popular?api_key=${API_KEY}&language=en-US`,
-      transformResponse: (res) => transformPopularPersons(res)
+      transformResponse: (res) => transformer.transformPopularPersons(res)
     }),
     getTrending: builder.query({
       query: (type) => `trending/${type}/day?api_key=${API_KEY}`,
-      transformResponse: (res) => transformTrending(res)
+      transformResponse: (res) => transformer.transformTrending(res)
     }),
     getUpcoming: builder.query({
       query: () => `movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`,
-      transformResponse: (res) => transformUpcoming(res)
+      transformResponse: (res) => transformer.transformUpcoming(res)
     }),
     getTrailers: builder.query({
       query: ({ id, mediaType }) => `${mediaType}/${id}/videos?api_key=${API_KEY}`,
-      transformResponse: (res) => transformTrailers(res)
+      transformResponse: (res) => transformer.transformTrailers(res)
     }),
     getSimilar: builder.query({
       query: ({ id, mediaType }) => `${mediaType}/${id}/similar?api_key=${API_KEY}`,

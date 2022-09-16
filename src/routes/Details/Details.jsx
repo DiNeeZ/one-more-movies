@@ -9,10 +9,20 @@ import MovieDescrSkeleton from '../../skeletons/MovieDescrSkeleton'
 import { useParams } from 'react-router-dom'
 import { useGetMovieQuery } from '../../features/api/tmdbSlice'
 import './details.scss'
+import { useLocalStorage } from '../../hooks'
+import { useEffect } from 'react'
 
 const Details = () => {
+  const [value, setValueToLocalStorage] = useLocalStorage('recentlyViewed', [])
   const { id, mediaType } = useParams()
   const { data, isSuccess, isLoading } = useGetMovieQuery({ id, mediaType })
+
+  useEffect(() => {
+    if (data) {
+      const isInStorage = value.some(item => item.id === data.id)
+      !isInStorage && setValueToLocalStorage([data, ...value].slice(0, 6))
+    }
+  }, [data])
 
   return (
     <section
