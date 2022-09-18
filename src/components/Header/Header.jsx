@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from '../Logo/Logo'
-import SearchBar from '../Search/Search'
+import Search from '../Search/Search'
 import './header.scss'
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
       <div className='header__container container'>
         <Logo />
         <div className='header__right'>
-          <SearchBar />
+          <Search />
           <nav className='header__nav'>
             <Link
               className='header__nav-link header__nav-link--login'

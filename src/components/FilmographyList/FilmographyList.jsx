@@ -57,7 +57,7 @@ const FilmographyList = ({ list, title }) => {
           {
             sortListByParameter(list, sortValue)
               .map(item => (
-                <li className='filmography-list__item' key={item.id}>
+                <li className='filmography-list__item' key={`${item.id}-${title}`}>
                   <FilmographyItem item={item} />
                 </li>
               ))

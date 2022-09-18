@@ -7,8 +7,8 @@ export class responseTransformer {
   _extractImageId = (str) => str.slice(str.indexOf('/') + 1, str.indexOf('.'))
 
   _getPosterPath = (path) => ({
-    image: getImageUrl(342, path),
-    preview: getImageUrl(92, path)
+    preview: getImageUrl(92, path),
+    image: getImageUrl(342, path)
   })
 
   _getBackdropPath = (path) => ({
@@ -117,15 +117,22 @@ export class responseTransformer {
       return obj
     })
 
-    const uniqueTransformedCrew = getUniqueObjArr(transformedCrew)
-    const director = this._findPerson(uniqueTransformedCrew, 'director')
-    const writer = this._findPerson(uniqueTransformedCrew, 'writer')
-    const producer = this._findPerson(uniqueTransformedCrew, 'producer')
-    const directorOfPhotography = this._findPerson(uniqueTransformedCrew, 'directorOfPhotography')
-    const composer = this._findPerson(uniqueTransformedCrew, 'composer')
-    const stunts = this._findPerson(uniqueTransformedCrew, 'stunts')
+    const director = this._findPerson(transformedCrew, 'director')
+    const writer = this._findPerson(transformedCrew, 'writer')
+    const producer = this._findPerson(transformedCrew, 'producer')
+    const directorOfPhotography = this._findPerson(transformedCrew, 'directorOfPhotography')
+    const composer = this._findPerson(transformedCrew, 'composer')
+    const stunts = this._findPerson(transformedCrew, 'stunts')
 
-    return { director, writer, producer, directorOfPhotography, composer, stunts, cast: getUniqueObjArr(cast) }
+    return { 
+      director: getUniqueObjArr(director), 
+      writer: getUniqueObjArr(writer), 
+      producer: getUniqueObjArr(producer), 
+      directorOfPhotography: getUniqueObjArr(directorOfPhotography), 
+      composer: getUniqueObjArr(composer), 
+      stunts: getUniqueObjArr(stunts), 
+      cast: getUniqueObjArr(cast) 
+    }
   }
 
   transformPersonCredits = async (res) => {
@@ -135,5 +142,20 @@ export class responseTransformer {
     transformedPerson.combinedCredits = this.transformCredits(transformedPerson.combinedCredits, genres.data.genres)
 
     return transformedPerson
+  }
+
+  transformSearchResults = (res) => {
+    const transformed = camelizeObjectKeys(res)
+    transformed.results = transformed.results.map(item => {
+      const transformedItem = camelizeObjectKeys(item)
+      if (transformedItem.posterPath) {
+        transformedItem.posterPath = (this._getPosterPath(transformedItem.posterPath))
+      }
+      if (transformedItem.profilePath) {
+        transformedItem.profilePath = (this._getProfilePath(transformedItem.profilePath))
+      }
+      return transformedItem
+    })
+    return transformed
   }
 }

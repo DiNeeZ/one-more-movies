@@ -43,6 +43,11 @@ export const tmdbSlice = createApi({
     getPersonCredits: builder.query({
       query: (id) => `person/${id}?api_key=${API_KEY}&language=en-US&append_to_response=combined_credits`,
       transformResponse: (res) => transformer.transformPersonCredits(res)
+    }),
+    getSearchResults: builder.query({
+      query: (searchQuery, page = 1) =>
+        `search/multi?api_key=${API_KEY}&query=${searchQuery}&language=en-US&page=${page}&include_adult=false`,
+      transformResponse: (res) => transformer.transformSearchResults(res)
     })
   })
 })
@@ -56,5 +61,6 @@ export const {
   useGetImagesQuery,
   useGetMovieCreditsQuery,
   useGetMovieQuery,
-  useGetPersonCreditsQuery } = tmdbSlice
+  useGetPersonCreditsQuery,
+  useGetSearchResultsQuery } = tmdbSlice
 

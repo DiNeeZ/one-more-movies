@@ -1,59 +1,34 @@
-import { useState, useEffect } from 'react'
-import { AiOutlineSearch } from 'react-icons/ai'
-import { useDebounce } from '../../hooks'
+import { useState } from 'react'
+import SearchBar from './SearchBar/SearchBar'
+import SearchDropdown from './SearchDropdown/SearchDropdown'
 import './search.scss'
+import { useDebounce } from '../../hooks'
 
-const SearchBar = () => {
+const Search = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [focused, setFocused] = useState(false)
-
   const debouncedSearchQuery = useDebounce(searchQuery, 1000)
-  // const { data } = useGetSearchResultsQuery(debouncedSearchQuery)
 
-  const onFocus = () => setFocused(true)
-  const onBlur = () => setFocused(false)
+
+  const handleFocus = () => setFocused(true)
+  const handleBlur = () => setTimeout(() => setFocused(false), 100)
   const handleChangeQuery = (e) => setSearchQuery(e.target.value)
-  const handleClick = () => {
-    const find = async () => {
-      console.log(debouncedSearchQuery)
-    }
-    if (debouncedSearchQuery) {
-      find()
-    }
-  }
+  const clearInput = () => setSearchQuery('')
 
-  useEffect(() => {
-    if (debouncedSearchQuery) {
-    }
-  }, [debouncedSearchQuery])
-
-  const showDropdown = focused && debouncedSearchQuery
+  const showDropdown = focused && (debouncedSearchQuery.length >= 3)
 
   return (
     <div className='search'>
-      <div className='search__bar search-bar'>
-        <input
-          onFocus={onFocus}
-          onBlur={onBlur}
-          onChange={handleChangeQuery}
-          value={searchQuery}
-          type='text'
-          name='search'
-          placeholder='Search...'
-          className='search-bar__input' />
-        <button
-          className='search-bar__btn'
-          onClick={handleClick}>
-          <AiOutlineSearch className='search-bar__icon' />
-        </button>
-      </div>
-      {showDropdown && (
-        <div className='search__dropdown'>
-          {debouncedSearchQuery}
-        </div>
-      )}
+      <SearchBar
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onChange={handleChangeQuery}
+        value={searchQuery}
+        clearInput={clearInput}
+      />
+      {showDropdown && <SearchDropdown clearInput={clearInput} searchQuery={debouncedSearchQuery} />}
     </div>
   )
 }
 
-export default SearchBar
+export default Search

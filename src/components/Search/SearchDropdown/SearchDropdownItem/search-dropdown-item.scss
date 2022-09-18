@@ -1,0 +1,65 @@
+@import "../../../../common/colors.scss";
+
+.search-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: rgba($dark-color, 0.5);
+  transition: background-color 0.15s ease-in-out;
+
+  &:nth-child(odd) {
+    background-color: rgba($dark-color, 0.25);
+  }
+
+  &:hover {
+    background-color: rgba($dark-color, 0.75);
+  }
+
+  &.big {
+    padding: 0.2rem 0.5rem;
+  }
+
+  &__image {
+    width: 4rem;
+    border-radius: 2px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__info {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &.small {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+      p:not(.search-dropdown-item__title) {
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: $yellow;
+      }
+    }
+
+    p {
+      margin: 0;
+      padding: 0.5rem 0;
+
+      &:nth-child(2) {
+        color: $font-secondary;
+      }
+    }
+  }
+
+  &__title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

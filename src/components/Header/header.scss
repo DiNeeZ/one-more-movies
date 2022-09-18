@@ -2,7 +2,7 @@
 
 .header {
   width: 100%;
-  position: fixed;
+  position: absolute;
   padding: 0.5rem 0;
   background-color: $primary-color;
   box-shadow: 0px 3px 10px 0px rgba($dark-color, 0.75);
@@ -13,32 +13,6 @@
     justify-content: space-between;
     align-items: center;
   }
-
-  // &__logo {
-  //   position: relative;
-  //   font-size: 1.25rem;
-  //   font-weight: 600;
-  //   color: $font-primary;
-
-  //   &::before {
-  //     content: "";
-  //     position: absolute;
-  //     bottom: -8px;
-  //     left: 50%;
-  //     transform: translateX(-50%);
-  //     width: 0;
-  //     height: 2px;
-  //     background-color: $font-primary;
-  //     border-radius: 1px;
-  //     transition: width 0.15s ease-in-out;
-  //   }
-
-  //   &:hover {
-  //     &::before {
-  //       width: 100%;
-  //     }
-  //   }
-  // }
 
   &__right {
     display: flex;

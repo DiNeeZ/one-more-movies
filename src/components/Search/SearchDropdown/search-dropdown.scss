@@ -1,0 +1,39 @@
+@import "../../../common/colors.scss";
+
+.search-dropdown {
+  position: absolute;
+  top: 2.8rem;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: $primary-color;
+  box-shadow: 0px 0px 7px rgba(#000, 0.7);
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2.2rem;
+  }
+
+  &__btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    color: $dark-color;
+    background-color: $font-secondary;
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover {
+      background-color: lighten($font-secondary, 5%);
+    }
+  }
+
+  &__nothing {
+    padding: 1rem 1rem 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
