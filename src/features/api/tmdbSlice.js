@@ -45,7 +45,7 @@ export const tmdbSlice = createApi({
       transformResponse: (res) => transformer.transformPersonCredits(res)
     }),
     getSearchResults: builder.query({
-      query: (searchQuery, page = 1) =>
+      query: ({ searchQuery, page }) =>
         `search/multi?api_key=${API_KEY}&query=${searchQuery}&language=en-US&page=${page}&include_adult=false`,
       transformResponse: (res) => transformer.transformSearchResults(res)
     })

@@ -36,7 +36,6 @@ const SearchDropdownItem = ({ item, large }) => {
 
   return (
     <Link
-      onClick={() => console.log('hahahah')}
       to={`/${item.mediaType}/${item.id}`}
       className={`search-dropdown-item ${large && 'big'}`}>
       {large ? largeContent : content}

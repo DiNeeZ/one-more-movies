@@ -6,6 +6,7 @@ import Details from './routes/Details/Details'
 import Person from './routes/Person/Person'
 import Credits from './routes/Credits/Credits'
 import PageNotFound from './components/PageNotFound/PageNotFound'
+import SearchResults from './routes/SearchResults/SearchResults'
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
           <Route path='/:mediaType/:id' element={<Details />} />
           <Route path='/person/:personId' element={<Person />} />
           <Route path='/credits/:mediaType/:movieId' element={<Credits />} />
+          <Route path='/search-results/:query' element={<SearchResults />} />
         </Route>
       </Routes>
     </ScrollToTop>

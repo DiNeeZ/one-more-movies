@@ -1,0 +1,21 @@
+.search-results {
+  flex: 1 0 auto;
+  padding-top: 6rem;
+  background: gray;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+  }
+
+  &__results {
+    flex: 1 0 auto;
+  }
+
+  .pagination {
+    align-self: center;
+    justify-self: flex-end;
+    padding-bottom: 2rem;
+  }
+}

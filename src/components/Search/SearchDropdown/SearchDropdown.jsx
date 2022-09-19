@@ -6,7 +6,7 @@ import nothing from '../../../images/nothing-found.png'
 import './search-dropdown.scss'
 
 const SearchDropdown = ({ searchQuery, clearInput }) => {
-  const { data, isLoading } = useGetSearchResultsQuery(searchQuery)
+  const { data, isLoading } = useGetSearchResultsQuery({searchQuery})
   const renderItems = results => results.map((item, idx) =>
     <SearchDropdownItem key={item.id} item={item} large={[0, 1].includes(idx)} />
   )
@@ -31,7 +31,7 @@ const SearchDropdown = ({ searchQuery, clearInput }) => {
               </ul>
               <Link
                 className='search-dropdown__btn'
-                to='/'
+                to={`/search-results/${searchQuery}`}
                 onClick={clearInput}
                 >
                 See all results for "{searchQuery}"
