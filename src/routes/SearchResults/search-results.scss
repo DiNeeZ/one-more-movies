@@ -1,3 +1,5 @@
+@import '../../common/colors.scss';
+
 .search-results {
   flex: 1 0 auto;
   padding-top: 6rem;
@@ -6,7 +8,7 @@
   &__container {
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 12rem);
+    min-height: calc(100vh - 16rem);
   }
 
   &__results {
@@ -16,6 +18,22 @@
   .pagination {
     align-self: center;
     justify-self: flex-end;
+  }
+
+  &__nothing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+      font-size: 3rem;
+      color: $soft-red;
+    }
+
+    img {
+      width: 5rem;
+    }
   }
   
 }

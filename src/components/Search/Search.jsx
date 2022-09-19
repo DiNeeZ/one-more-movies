@@ -11,7 +11,7 @@ const Search = () => {
 
 
   const handleFocus = () => setFocused(true)
-  const handleBlur = () => setTimeout(() => setFocused(false), 100)
+  const handleBlur = () => setTimeout(() => setFocused(false), 200)
   const handleChangeQuery = (e) => setSearchQuery(e.target.value)
   const clearInput = () => setSearchQuery('')
 

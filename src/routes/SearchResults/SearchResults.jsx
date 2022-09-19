@@ -5,6 +5,7 @@ import { useGetSearchResultsQuery } from '../../features/api/tmdbSlice'
 import SearchResultsItem from '../../components/SearchResultsItem/SearchResultsItem'
 import Pagination from '../../components/Pagination/Pagination'
 import SpinnerBounce from '../../components/SpinnerBounce/SpinnerBounce'
+import nothing from '../../images/nothing-found.png'
 
 import './search-results.scss'
 
@@ -19,25 +20,31 @@ const SearchResults = () => {
     <section className='search-results'>
       <div className='container search-results__container'>
         <ul className='search-results__results'>
-          {(isLoading || isFetching) ? <SpinnerBounce /> : data.results.map(item => {
-            return (
-              <li key={item.id}>
-                <SearchResultsItem item={item} />
-              </li>
-            )
-          })}
-      </ul>
+          {(isLoading || isFetching) ? <SpinnerBounce /> :
+            !data.results.length ? (
+              <div className='search-results__nothing'>
+                <h3>Nothing Found</h3>
+                <img src={nothing} alt='nothing found' />
+              </div>
+            ) : data.results.map(item => {
+              return (
+                <li key={item.id}>
+                  <SearchResultsItem item={item} />
+                </li>
+              )
+            })}
+        </ul>
 
-      {
-        isLoading ? <SpinnerBounce /> : (
-          <Pagination
-            handleChange={changePage}
-            totalPageCount={data.totalPages}
-            currentPage={currentPage}
-          />
-        )
-      }
-    </div>
+        {
+          isLoading ? <SpinnerBounce /> : (
+            <Pagination
+              handleChange={changePage}
+              totalPageCount={data.totalPages}
+              currentPage={currentPage}
+            />
+          )
+        }
+      </div>
     </section >
   )
 }
