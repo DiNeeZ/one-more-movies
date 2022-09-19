@@ -6,7 +6,7 @@ import nothing from '../../../images/nothing-found.png'
 import './search-dropdown.scss'
 
 const SearchDropdown = ({ searchQuery, clearInput }) => {
-  const { data, isLoading } = useGetSearchResultsQuery({searchQuery})
+  const { data, isLoading, isFetching } = useGetSearchResultsQuery({ searchQuery })
   const renderItems = results => results.map((item, idx) =>
     <SearchDropdownItem key={item.id} item={item} large={[0, 1].includes(idx)} />
   )
@@ -20,24 +20,20 @@ const SearchDropdown = ({ searchQuery, clearInput }) => {
 
   return (
     <div className='search-dropdown'>
-      {
-        isLoading ?
-          <SpinnerBounce />
-          :
-          !data.results.length ? nothigFound : (
-            <>
-              <ul className='search-dropdown__list'>
-                {renderItems(data.results.slice(0, 10))}
-              </ul>
-              <Link
-                className='search-dropdown__btn'
-                to={`/search-results/${searchQuery}`}
-                onClick={clearInput}
-                >
-                See all results for "{searchQuery}"
-              </Link>
-            </>
-          )
+      {(isLoading || isFetching) ? <SpinnerBounce /> :
+        !data.results.length ? nothigFound : (
+          <>
+            <ul className='search-dropdown__list'>
+              {renderItems(data.results.slice(0, 10))}
+            </ul>
+            <Link
+              className='search-dropdown__btn'
+              to={`/search-results/${searchQuery}`}
+              onClick={clearInput}>
+              See all results for "{searchQuery}"
+            </Link>
+          </>
+        )
       }
     </div>
   )

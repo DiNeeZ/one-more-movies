@@ -1,22 +1,23 @@
+import { usePagination } from '../../hooks/usePagination'
+import { BsThreeDots } from 'react-icons/bs'
 import './pagination.scss'
 
-const Pagination = ({ pages, handleChange, currentPage  }) => {
+const Pagination = ({ totalPageCount, handleChange, currentPage }) => {
+  const paginationRange = usePagination({ totalPageCount, currentPage })
+
   return (
     <div className='pagination'>
       {
-        Array.from(Array(pages).keys()).map(number => {
-          const isCurrent = currentPage === number + 1
-
-          return (
-            <button
-              className={`pagination__btn`}
-              key={number + 1}
-              disabled={isCurrent}
-              onClick={() => handleChange(number + 1)}
-            >
-              {number + 1}
-            </button>
-          )
+        paginationRange.map((item, idx) => {
+          const isCurrent = currentPage === item
+          const isDots = item === 'dots'
+          return (<button
+            className={`pagination__btn ${(isCurrent || isDots) && `pagination__btn__${isCurrent ? 'current' : 'dots'}`}`}
+            key={`${item}${isDots && idx}`}
+            disabled={isCurrent || isDots}
+            onClick={() => handleChange(item)}>
+            {isDots ? <BsThreeDots /> : item}
+          </button>)
         })
       }
     </div>

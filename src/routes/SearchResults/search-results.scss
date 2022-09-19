@@ -1,12 +1,11 @@
 .search-results {
   flex: 1 0 auto;
   padding-top: 6rem;
-  background: gray;
 
   &__container {
     display: flex;
     flex-direction: column;
-    min-height: 80vh;
+    min-height: calc(100vh - 12rem);
   }
 
   &__results {
@@ -16,6 +15,6 @@
   .pagination {
     align-self: center;
     justify-self: flex-end;
-    padding-bottom: 2rem;
   }
+  
 }
