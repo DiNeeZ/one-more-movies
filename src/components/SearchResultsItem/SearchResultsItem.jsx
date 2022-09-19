@@ -4,8 +4,6 @@ import noImage from '../../images/no-image.jpg'
 import './search-results-item.scss'
 
 const SearchResultsItem = ({ item }) => {
-    console.log(item)
-
     const image = (item.profilePath || item.posterPath)
     const title = (item.title || item.name)
 

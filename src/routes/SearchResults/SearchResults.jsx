@@ -18,23 +18,27 @@ const SearchResults = () => {
   return (
     <section className='search-results'>
       <div className='container search-results__container'>
-        <div className='search-results__results'>
+        <ul className='search-results__results'>
           {(isLoading || isFetching) ? <SpinnerBounce /> : data.results.map(item => {
-            return <SearchResultsItem key={item.id} item={item} />
+            return (
+              <li key={item.id}>
+                <SearchResultsItem item={item} />
+              </li>
+            )
           })}
-        </div>
+      </ul>
 
-        {
-          isLoading ? <SpinnerBounce /> : (
-            <Pagination
-              handleChange={changePage}
-              totalPageCount={data.totalPages}
-              currentPage={currentPage}
-            />
-          )
-        }
-      </div>
-    </section>
+      {
+        isLoading ? <SpinnerBounce /> : (
+          <Pagination
+            handleChange={changePage}
+            totalPageCount={data.totalPages}
+            currentPage={currentPage}
+          />
+        )
+      }
+    </div>
+    </section >
   )
 }
 
