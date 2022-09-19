@@ -1,8 +1,8 @@
 import { useState } from 'react'
+import { useDebounce } from '../../hooks'
 import SearchBar from './SearchBar/SearchBar'
 import SearchDropdown from './SearchDropdown/SearchDropdown'
 import './search.scss'
-import { useDebounce } from '../../hooks'
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('')
