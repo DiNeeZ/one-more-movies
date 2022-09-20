@@ -1,7 +1,84 @@
+@import "../../common/colors.scss";
+
 .search-results-item {
-    display: flex;
-    gap: 2rem;
-    &__image {
-        width: 6rem;
-    }
+	display: flex;
+	gap: 2rem;
+	align-items: center;
+	padding: 0.5rem;
+
+	&__image {
+		width: 6.6rem;
+		height: 9.9rem;
+		object-fit: cover;
+		object-position: center;
+	}
+}
+
+.result-info {
+
+	&__title {
+		margin: 0;
+		margin-bottom: 1rem;
+		font-family: "Rajdhani", sans-serif;
+		font-size: 1.75rem;
+		font-weight: 500;
+		transition: color .15s ease-in-out;
+
+		&:hover {
+			color: $border-color;
+		}
+	}
+
+	&__job {
+		margin: 0;
+		margin-bottom: 1rem;
+		color: $font-secondary;
+	}
+
+	&__type {
+		margin: 0;
+		margin-bottom: 1rem;
+		color: $font-secondary;
+	}
+
+	&__year {
+		margin: 0;	
+		font-family: "Rajdhani", sans-serif;
+		font-size: 1.5rem;
+		color: $yellow;
+	}
+}
+
+.known-for {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 1rem;
+
+	&__link {
+		flex: 1 0 auto;
+		font-family: "Rajdhani", sans-serif;
+		font-size: 1.2rem;
+		font-weight: 500;
+
+		&:hover {
+			.known-for__title,
+			.known-for__year {
+				color: $font-primary;
+			}
+		}
+
+		span {
+			font-family: inherit;
+			transition: color 0.15s ease-in-out;
+		}
+	}
+
+	&__title {
+		margin-right: 0.5rem;
+		color: $yellow;
+	}
+
+	&__year {
+		color: $sandy-orange;
+	}
 }

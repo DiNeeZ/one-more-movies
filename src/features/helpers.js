@@ -154,6 +154,10 @@ export class responseTransformer {
       if (transformedItem.profilePath) {
         transformedItem.profilePath = (this._getProfilePath(transformedItem.profilePath))
       }
+      if (transformedItem.mediaType === 'person') {
+        transformedItem.knownFor = transformedItem.knownFor.map(movie => camelizeObjectKeys(movie)) 
+      }
+      console.log(transformedItem)
       return transformedItem
     })
     return transformed

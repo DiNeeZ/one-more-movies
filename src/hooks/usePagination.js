@@ -1,8 +1,4 @@
-import React from 'react'
 import { useMemo } from 'react'
-import { HiDotsHorizontal } from 'react-icons/hi'
-
-// export const DOTS = '...'
 
 const range = (start, end) => {
     let length = end - start + 1

@@ -1,18 +1,26 @@
-@import '../../common/colors.scss';
+@import "../../common/colors.scss";
 
 .search-results {
   flex: 1 0 auto;
-  padding-top: 6rem;
-  padding-bottom: 4rem;
+  padding-top: 4.5rem;
 
   &__container {
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 16rem);
+    gap: 1rem;
   }
 
   &__results {
     flex: 1 0 auto;
+    height: calc(100vh - 13rem);
+  }
+
+  &__result {
+    background-color: rgba($dark-color, 0.5);
+
+    &:nth-child(odd) {
+      background-color: rgba($dark-color, 0.75);
+    }
   }
 
   .pagination {
@@ -35,5 +43,4 @@
       width: 5rem;
     }
   }
-  
 }
