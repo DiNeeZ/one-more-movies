@@ -14,14 +14,18 @@ import './search-results.scss'
 const SearchResults = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const { query } = useParams()
-  const { data, isLoading, isFetching } = useGetSearchResultsQuery({ searchQuery: query, page: currentPage })
+  const {
+    data,
+    isLoading,
+    isFetching } = useGetSearchResultsQuery({ searchQuery: query, page: currentPage })
 
   useEffect(() => {
     return () => setCurrentPage(1)
   }, [query])
 
   const changePage = (num) => setCurrentPage(num)
-  const renderSkeleton = Array.from({length: 5}, (_, index) => index + 1).map(item => <SearchItemSkeleton key={item} />) 
+  const renderSkeleton = Array.from({ length: 5 }, (_, index) => index + 1)
+    .map(item => <SearchItemSkeleton key={item} />)
 
   return (
     <section className='search-results'>
