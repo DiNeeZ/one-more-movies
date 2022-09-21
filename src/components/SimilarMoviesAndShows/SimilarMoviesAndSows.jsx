@@ -9,7 +9,7 @@ import './similar.scss'
 
 const SimilarMoviesAndShows = () => {
   const { id, mediaType } = useParams()
-  const { data: similar, error, isSuccess, isLoading, isError } = useGetSimilarQuery({ id, mediaType })
+  const { data: similar, error, isSuccess, isLoading, isFetching, isError } = useGetSimilarQuery({ id, mediaType })
 
   const renderSimilar = (similar) =>
     similar.map(item => <MediaCard key={item.id} media={item} />)
@@ -23,7 +23,7 @@ const SimilarMoviesAndShows = () => {
     <div className='similar'>
       <h3 className='similar__title'>More like this (kinda)...</h3>
       <div className='similar__inner'>
-        {isLoading ? renderSkeleton : renderSimilar(similar)}
+        {(isLoading || isFetching) ? renderSkeleton : renderSimilar(similar)}
       </div>
     </div>
   )

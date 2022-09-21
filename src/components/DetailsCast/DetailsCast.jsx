@@ -6,7 +6,7 @@ import './details-cast.scss'
 
 const DetailsCast = () => {
   const { id, mediaType } = useParams()
-  const { data, isLoading } = useGetMovieCreditsQuery({ id, mediaType })
+  const { data, isLoading, isFetching } = useGetMovieCreditsQuery({ id, mediaType })
 
   const renderActors = cast => cast.map(actor => (
     <li key={actor.id} className='details-cast__item'>
@@ -20,7 +20,7 @@ const DetailsCast = () => {
     <div className='details-cast'>
       <h3 className='details-cast__title'>Actors</h3>
       <ul className='details-cast__list'>
-        {isLoading ? renderSkeleton : renderActors(data.cast.slice(0, 5))}
+        {(isLoading || isFetching) ? renderSkeleton : renderActors(data.cast.slice(0, 5))}
         <li className='details-cast__item'>
           <Link to={`/credits/${mediaType}/${id}`} className='details-cast__btn'>View All</Link>
         </li>

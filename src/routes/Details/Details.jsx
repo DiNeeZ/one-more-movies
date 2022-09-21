@@ -18,7 +18,7 @@ import './details.scss'
 const Details = () => {
   const [viewedList, setViewedList] = useLocalStorage('recentlyViewed', [])
   const { id, mediaType } = useParams()
-  const { data, isSuccess, isLoading } = useGetMovieQuery({ id, mediaType })
+  const { data, isSuccess, isLoading, isFetching } = useGetMovieQuery({ id, mediaType })
 
   useEffect(() => {
     if (data) {
@@ -26,6 +26,8 @@ const Details = () => {
       !isInStorage && setViewedList([data, ...viewedList].slice(0, 6))
     }
   }, [data, viewedList, setViewedList])
+
+  const isLoadingShow = isLoading || isFetching
 
   return (
     <section
@@ -43,15 +45,15 @@ const Details = () => {
       </div>
       <div className='container details-page__container details'>
         <div className='details__left'>
-          {isLoading ? <MovieDescrSkeleton /> : <MovieDescr movie={data} />}
+          {isLoadingShow ? <MovieDescrSkeleton /> : <MovieDescr movie={data} />}
         </div>
         <div className='details__right'>
-          <h1 className='details__title'>{isLoading ? <TitleSkeleton /> : (data.title || data.name)}</h1>
+          <h1 className='details__title'>{isLoadingShow ? <TitleSkeleton /> : (data.title || data.name)}</h1>
           <div>
             <h2 className='visually-hidden'>{isSuccess && (data.title || data.name)} description</h2>
             <div className='details__descr'>
               <div className='details__descr-left'>
-                <p className='details__overview'>{isLoading ? <ParagraphSkeleton /> : data.overview}</p>
+                <p className='details__overview'>{isLoadingShow ? <ParagraphSkeleton /> : data.overview}</p>
                 <ImageGallery className='details__image-gallery' />
                 <SimilarMoviesAndShows />
               </div>

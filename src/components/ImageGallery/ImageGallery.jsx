@@ -15,7 +15,7 @@ const ImageGallery = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentImageUrl, setCurrentImageUrl] = useState({})
   const { id, mediaType } = useParams()
-  const { data: images, error, isSuccess, isLoading, isError } = useGetImagesQuery({ id, mediaType })
+  const { data: images, error, isSuccess, isLoading, isFetching, isError } = useGetImagesQuery({ id, mediaType })
 
   const getImageUrlById = (id) => {
     if (id && images) {
@@ -53,7 +53,7 @@ const ImageGallery = () => {
     <div className='image-gallery'>
       <h2 className='image-gallery__title'>Images</h2>
       <Carousel settings={carouselSettings}>
-        {isLoading ? renderSkeleton : renderImages(images)}
+        {(isLoading || isFetching) ? renderSkeleton : renderImages(images)}
       </Carousel>
       <Modal
         handleClose={() => setIsModalOpen(false)}
