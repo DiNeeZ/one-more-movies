@@ -5,7 +5,6 @@ import { Scrollbars } from 'react-custom-scrollbars'
 
 import SearchResultsItem from '../../components/SearchResultsItem/SearchResultsItem'
 import Pagination from '../../components/Pagination/Pagination'
-import SpinnerBounce from '../../components/SpinnerBounce/SpinnerBounce'
 import SearchItemSkeleton from '../../skeletons/SearchItemSkeleton'
 import nothing from '../../images/nothing-found.png'
 
@@ -17,7 +16,8 @@ const SearchResults = () => {
   const {
     data,
     isLoading,
-    isFetching } = useGetSearchResultsQuery({ searchQuery: query, page: currentPage })
+    isFetching,
+    isSuccess } = useGetSearchResultsQuery({ searchQuery: query, page: currentPage })
 
   useEffect(() => {
     return () => setCurrentPage(1)
@@ -49,7 +49,7 @@ const SearchResults = () => {
           </Scrollbars>
         </ul>
         {
-          isLoading ? <SpinnerBounce /> : (
+          isSuccess && (
             <Pagination
               handleChange={changePage}
               totalPageCount={data.totalPages}
