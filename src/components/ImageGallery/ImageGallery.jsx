@@ -45,7 +45,7 @@ const ImageGallery = () => {
     arrows: true
   }
 
-  if (isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
+  if (!isLoading && isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
 
   if (isSuccess && !images.length) return null
 

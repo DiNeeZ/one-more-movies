@@ -11,7 +11,7 @@ import './popular-persons.scss'
 const PopularPersons = () => {
   const { data, error, isLoading, isError } = useGetPopularPersonsQuery()
 
-  if (isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
+  if (!isLoading && isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
 
   return (
     <div className='popular-persons'>

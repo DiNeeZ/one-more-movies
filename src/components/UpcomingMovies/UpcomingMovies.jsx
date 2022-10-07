@@ -58,7 +58,7 @@ const UpcomingMovies = () => {
 
   const renderSkeleton = Array.from(Array(5).keys()).map(item => <Aspect16on9Skeleton key={item} />)
 
-  if (isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
+  if (!isLoading && isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
 
   return (
     <div className='upcoming-movies'>

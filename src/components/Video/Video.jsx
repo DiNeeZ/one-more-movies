@@ -26,7 +26,7 @@ const Video = ({ id, mediaType }) => {
   const handleDotClick = (index) => setCurrentVideo(index)
 
   if (isLoading) return <SpinnerBounce />
-  if (isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
+  if (!isLoading && isError)return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
   if (isSuccess && !trailers.length) return <VideoNotAvaliable />
 
   if (isSuccess) return (

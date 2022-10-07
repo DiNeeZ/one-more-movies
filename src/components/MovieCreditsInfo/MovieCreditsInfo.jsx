@@ -11,7 +11,7 @@ const MovieCreditsInfo = () => {
   const { movieId, mediaType } = useParams()
   const { data: movie, error, isLoading, isError } = useGetMovieQuery({ id: movieId, mediaType })
   
-  if (isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
+  if (!isLoading && isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
 
   return (
     <div className='movie-credits-info'>

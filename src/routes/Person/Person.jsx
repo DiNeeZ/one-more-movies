@@ -20,7 +20,7 @@ const Person = () => {
     </>
   )
 
-  if (isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
+  if (!isLoading && isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
 
   return (
     <section className='person'>

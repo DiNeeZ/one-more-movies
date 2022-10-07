@@ -15,7 +15,7 @@ const SimilarMoviesAndShows = () => {
     similar.map(item => <MediaCard key={item.id} media={item} />)
   const renderSkeleton = Array.from(Array(10).keys()).map(item => <CardSkeleton key={item} />)
 
-  if (isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
+  if (!isLoading && isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
 
   if (isSuccess && !similar.length) return null
 

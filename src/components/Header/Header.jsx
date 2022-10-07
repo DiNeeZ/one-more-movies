@@ -9,17 +9,15 @@ const Header = () => {
       <div className='header__container container'>
         <Logo />
         <Search />
-        <div className='header__right'>
-          <nav className='header__nav'>
-            <Link
-              className='header__nav-link header__nav-link--login'
-              to='/'>Login</Link>
-            <span>/</span>
-            <Link
-              className='header__nav-link header__nav-link--signin'
-              to='/'>Sign In</Link>
-          </nav>
-        </div>
+        <nav className='header__nav'>
+          <Link
+            className='header__nav-link header__nav-link--login'
+            to='/'>Login</Link>
+          <span>/</span>
+          <Link
+            className='header__nav-link header__nav-link--signin'
+            to='/'>Sign In</Link>
+        </nav>
       </div>
     </header>
   )
