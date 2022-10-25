@@ -11,8 +11,10 @@ const Filmography = ({ data }) => {
       <div className='filmography__container'>
         {
           Object.entries(data.combinedCredits).map(([key, value]) => {
-            if (key === 'cast') key = actorOrActress[data.gender]
-            
+            if (key === 'cast') {
+              const idx =  [0, 1, 2].includes(data.gender) ? data.gender : 0
+              key = actorOrActress[idx]
+            }
             return (<FilmographyList
               key={key}
               list={value}
