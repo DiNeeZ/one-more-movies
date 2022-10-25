@@ -157,7 +157,6 @@ export class responseTransformer {
       if (transformedItem.mediaType === 'person') {
         transformedItem.knownFor = transformedItem.knownFor.map(movie => camelizeObjectKeys(movie)) 
       }
-      console.log(transformedItem)
       return transformedItem
     })
     return transformed
