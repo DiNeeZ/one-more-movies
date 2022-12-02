@@ -4,7 +4,6 @@ import './recently-viewed.scss'
 
 const RecentlyViewed = () => {
   const [viewed] = useLocalStorage('recentlyViewed', [])
-  // console.log(viewed)
   if (!viewed.length) return null
   return (
     <div className='recently-viewed'>

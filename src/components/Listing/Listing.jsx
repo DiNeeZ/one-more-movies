@@ -58,11 +58,13 @@ const Listing = ({ type }) => {
         </ul>
       </Collapse>
       <button className={`listing__btn`} onClick={handleClick}>
-        {!isOpen ? 'See more' : 'See less'}
-        {!isOpen ?
-          <BsChevronCompactDown className='listing__btn-icon listing__btn-icon--down' />
-          :
-          <BsChevronCompactUp className='listing__btn-icon listing__btn-icon--up' />}
+        <div className='listing__btn-inner'>
+          {!isOpen ? 'See more' : 'See less'}
+          {!isOpen ?
+            <BsChevronCompactDown className='listing__btn-icon listing__btn-icon--down' />
+            :
+            <BsChevronCompactUp className='listing__btn-icon listing__btn-icon--up' />}
+        </div>
       </button>
     </section>
 

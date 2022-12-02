@@ -1,7 +1,12 @@
 @import "../../common/colors.scss";
+@import "../../common/mixins.scss";
 
 .recently-viewed {
-  padding-top: 7.5rem;
+  padding-top: 5rem;
+
+  a {
+    width: 8rem;
+  }
 
   &__title {
     margin: 0 0 1rem 0;
@@ -17,13 +22,13 @@
   }
 
   &__list {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
+    align-items: center;
     gap: 1rem;
   }
 
   .card {
-   
+
     &::after {
       content: "";
       position: absolute;
@@ -37,6 +42,21 @@
 
     &:hover::after {
       opacity: 1;
+    }
+  }
+}
+
+@include tablet {
+  .recently-viewed {
+
+    &__title {
+      text-align: center;
+    }
+
+    &__list {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
     }
   }
 }

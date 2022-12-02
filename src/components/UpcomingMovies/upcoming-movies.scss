@@ -1,4 +1,5 @@
 @import "../../common/colors.scss";
+@import "../../common/mixins.scss";
 
 .upcoming-movies {
 
@@ -38,7 +39,8 @@
   &__image-wrapper {
     width: 100%;
     position: relative;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio */
     overflow: hidden;
   }
 
@@ -108,6 +110,49 @@
     svg {
       width: 2rem;
       height: 2rem;
+    }
+  }
+}
+
+@include small-tablet {
+  .upcoming-movie {
+
+    &__info {
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    &__link {
+      margin-bottom: 0.75rem;
+      font-size: 1.5rem;
+    }
+
+    .genres {
+      font-size: 0.7rem;
+
+      span:not(:last-child) {
+        position: relative;
+        padding-right: 0.5rem;
+      }
+    }
+  }
+}
+
+@include mobile {
+  .upcoming-movie {
+
+    &__link {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    .genres {
+      font-size: 0.5rem;
+
+      span:not(:last-child) {
+        position: relative;
+        padding-right: 0.25rem;
+      }
     }
   }
 }

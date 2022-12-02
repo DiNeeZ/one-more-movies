@@ -8,14 +8,16 @@ const Home = () => (
   <section className='home' role='main'>
     <div className='home__container container'>
       <div className='home__content'>
-        <UpcomingMovies />
-        <Listing type='movie' />
-        <Listing type='tv' />
-        <RecentlyViewed />
+        <div className='home__content-main'>
+          <UpcomingMovies />
+          <Listing type='movie' />
+          <Listing type='tv' />
+        </div>
+        <aside className='home__sidebar'>
+          <PopularPersons />
+        </aside>
       </div>
-      <aside className='home__sidebar'>
-        <PopularPersons />
-      </aside>
+      <RecentlyViewed />
     </div>
   </section>
 )

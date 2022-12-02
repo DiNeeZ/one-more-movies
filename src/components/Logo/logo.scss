@@ -1,4 +1,5 @@
 @import "../../common/colors.scss";
+@import "../../common/mixins.scss";
 
 .logo {
   margin-right: 2rem;
@@ -48,7 +49,7 @@
   }
 }
 
-@media screen and (max-width: 576px) {
+@include mobile {
   .logo__text {
     display: none;
   }

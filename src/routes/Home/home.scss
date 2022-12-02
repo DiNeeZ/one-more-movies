@@ -1,16 +1,17 @@
 @import "../../common/colors.scss";
+@import "../../common/mixins.scss";
 
 .home {
   padding: 6rem 0 4rem;
 
-  &__container {
+  &__content {
     min-height: 100vh;
     display: flex;
     gap: 5rem;
     justify-content: space-between;
   }
 
-  &__content {
+  &__content-main {
     flex: 1 1 auto;
   }
 
@@ -20,5 +21,20 @@
 
   .upcoming-movies {
     margin-bottom: 5rem;
+  }
+}
+
+@include tablet {
+  .home {
+    &__content{
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+}
+
+@include small-tablet {
+  .home {
+    padding-top: 8rem;
   }
 }

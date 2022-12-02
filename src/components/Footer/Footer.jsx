@@ -8,7 +8,8 @@ const Footer = () => {
       <div className='container footer__container'>
         <div className='footer__left'>
           <Logo />
-        </div><div className='footer__center'>
+        </div>
+        <div className='footer__center'>
           One More Movie App &copy; 2022
         </div>
         <div className='footer__right'>
@@ -19,7 +20,7 @@ const Footer = () => {
             target='_blank'
             rel='noreferrer'
           >
-            <img src={TMDBlogo} alt='TMDB logo'/>
+            <img src={TMDBlogo} alt='TMDB logo' />
           </a>
         </div>
       </div>

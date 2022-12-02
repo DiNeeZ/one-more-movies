@@ -1,4 +1,5 @@
 @import "../../common/colors.scss";
+@import "../../common/mixins.scss";
 
 .trailer-btn {
   flex-shrink: 0;
@@ -20,5 +21,29 @@
   svg {
     width: 2rem;
     height: 2rem;
+  }
+}
+
+@include small-tablet {
+  .trailer-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+@include mobile {
+  .trailer-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.6rem;
+  }
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
