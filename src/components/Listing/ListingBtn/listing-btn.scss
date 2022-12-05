@@ -1,0 +1,90 @@
+@import "../../../common/colors.scss";
+@import "../../../common/mixins.scss";
+
+.listing-btn {
+	position: relative;
+	padding: 0.5rem;
+	font-family: "Rajdhani", sans-serif;
+	font-size: 1.25rem;
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: 2px;
+	color: $font-secondary;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+
+
+	&:hover {
+		.listing-btn__icon {
+			opacity: 1;
+
+			&--down {
+				transform: translate(-50%, 0.5rem);
+			}
+
+			&--up {
+				transform: translate(-50%, -2.25rem);
+			}
+		}
+	}
+
+	&__inner {
+		font-family: inherit;
+	}
+
+	&__icon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 1.5rem;
+		opacity: 0;
+		transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+	}
+}
+
+@include small-tablet {
+
+
+	.listing-btn {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: calc(100%/2);
+		padding-bottom: calc(150%/2 - 2rem);
+		height: 0;
+		transform: translateY(-1.5rem);
+
+		&__inner {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-weight: 600;
+			font-size: 2rem;
+		}
+
+		&__icon {
+			top: 300%;
+			font-size: 3rem;
+			opacity: 1;
+		}
+	}
+}
+
+@include mobile {
+
+  .listing-btn {
+
+    &__inner {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    &__icon {
+      top: 200%;
+      font-size: 2.5rem;
+    }
+  }
+}

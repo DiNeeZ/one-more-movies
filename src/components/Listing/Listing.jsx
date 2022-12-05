@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { Collapse } from 'react-collapse'
-import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs'
 import { useGetTrendingQuery } from '../../features/api/tmdbSlice'
 
+import ListingBtn from './ListingBtn/ListingBtn'
 import MediaCard from '../MediaCard/MediaCard'
 import ErrorIndicator from '../ErrorIndicator/ErrorIndicator'
 import CardSkeleton from '../../skeletons/CardSkeleton'
 
 import './listing.scss'
-
 
 const Listing = ({ type }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -57,15 +56,7 @@ const Listing = ({ type }) => {
           }
         </ul>
       </Collapse>
-      <button className={`listing__btn`} onClick={handleClick}>
-        <div className='listing__btn-inner'>
-          {!isOpen ? 'See more' : 'See less'}
-          {!isOpen ?
-            <BsChevronCompactDown className='listing__btn-icon listing__btn-icon--down' />
-            :
-            <BsChevronCompactUp className='listing__btn-icon listing__btn-icon--up' />}
-        </div>
-      </button>
+      <ListingBtn handleClick={handleClick} isOpen={isOpen} />
     </section>
 
   )
