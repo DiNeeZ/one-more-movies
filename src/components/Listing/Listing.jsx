@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Collapse } from 'react-collapse'
 import { useGetTrendingQuery } from '../../features/api/tmdbSlice'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import ListingBtn from './ListingBtn/ListingBtn'
 import MediaCard from '../MediaCard/MediaCard'
@@ -12,13 +12,14 @@ import './listing.scss'
 const Listing = ({ type }) => {
   const [isOpen, setIsOpen] = useState(false)
   const { data, error, isLoading, isSuccess, isError } = useGetTrendingQuery(type)
+  const [listRef] = useAutoAnimate()
 
   const handleClick = () => {
     setIsOpen(!isOpen)
   }
+  
 
-  const renderList = data => data.map((mediaItem, idx) => {
-    if (idx >= 5) return null
+  const renderList = data => data.map((mediaItem) => {
     return (
       <li key={mediaItem.id}>
         <MediaCard media={mediaItem} descr />
@@ -40,22 +41,12 @@ const Listing = ({ type }) => {
         <span>Popular </span>
         {type === 'movie' ? 'Movies' : 'TV Shows'}
       </h2>
-      <ul className='listing__list listing__list--visible'>
-        {isLoading ? renderSkeletons : renderList(data)}
+      <ul 
+      className='listing__list listing__list--visible'
+      ref={listRef}>
+        {isLoading && renderSkeletons}
+        {isSuccess && renderList(isOpen ? data : data.slice(0, 5))}
       </ul>
-      <Collapse isOpened={isOpen}>
-        <ul className='listing__list'>
-          {isSuccess &&
-            data.map((mediaItem, idx) => {
-              if (idx < 5) return null
-              return (
-                <li key={mediaItem.id}>
-                  <MediaCard media={mediaItem} descr />
-                </li>)
-            })
-          }
-        </ul>
-      </Collapse>
       <ListingBtn handleClick={handleClick} isOpen={isOpen} />
     </section>
 
