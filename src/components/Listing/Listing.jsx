@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useGetTrendingQuery } from '../../features/api/tmdbSlice'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
@@ -12,12 +12,17 @@ import './listing.scss'
 const Listing = ({ type }) => {
   const [isOpen, setIsOpen] = useState(false)
   const { data, error, isLoading, isSuccess, isError } = useGetTrendingQuery(type)
-  const [listRef] = useAutoAnimate()
+  const [parent, enable] = useAutoAnimate()
+  const myRef = useRef(null)
+
+  const executeScroll = () => myRef.current.scrollIntoView()
 
   const handleClick = () => {
+    if (isOpen) executeScroll()
+    enable(!isOpen)
     setIsOpen(!isOpen)
   }
-  
+
 
   const renderList = data => data.map((mediaItem) => {
     return (
@@ -33,17 +38,18 @@ const Listing = ({ type }) => {
     </li>
   ))
 
-  if (!isLoading && isError) return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
+  if (!isLoading && isError)
+    return <ErrorIndicator errorMsg={`${error.status} ${error.data.status_message}`} />
 
   return (
-    <section className='listing'>
+    <section ref={myRef} className='listing'>
       <h2 className='listing__title'>
         <span>Popular </span>
         {type === 'movie' ? 'Movies' : 'TV Shows'}
       </h2>
-      <ul 
-      className='listing__list listing__list--visible'
-      ref={listRef}>
+      <ul
+        className='listing__list listing__list--visible'
+        ref={parent }>
         {isLoading && renderSkeletons}
         {isSuccess && renderList(isOpen ? data : data.slice(0, 5))}
       </ul>

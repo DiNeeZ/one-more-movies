@@ -29,3 +29,20 @@
     @content;
   }
 }
+
+@mixin small-mobile {
+  @media (max-width: (320px)) {
+    @content;
+  }
+}
+
+// Other Media
+
+@mixin hover {
+  @media (hover: hover) {
+    @content;
+  }
+}
+
+
+

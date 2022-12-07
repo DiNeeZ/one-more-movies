@@ -34,13 +34,36 @@
   }
 }
 
-
-@include small-tablet {
+@include tablet {
   .listing {
     position: relative;
 
     &__list {
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 2rem;
+      row-gap: 2rem;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include small-tablet {
+  .listing {
+
+    &__list {
       grid-template-columns: repeat(2, 1fr);
+      column-gap: 2rem;
+      row-gap: 2rem;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include mobile {
+  .listing {
+
+    &__list {
+      grid-template-columns: repeat(1, 1fr);
       column-gap: 2rem;
       row-gap: 2rem;
       margin-bottom: 0;

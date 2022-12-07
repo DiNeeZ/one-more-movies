@@ -24,13 +24,20 @@
   .search {
     order: 3;
     flex-basis: 100%;
-    &:hover,
-    &:focus-within {
-      background-color: $font-primary;
+    background-color: $font-primary;
 
+    .search-bar__input {
+      width: 100%;
+    }
+
+    &:focus-within {
       .search-bar__input {
         width: 100%;
       }
+    }
+
+    .search-bar {
+      width: 100%;
     }
   }
 }

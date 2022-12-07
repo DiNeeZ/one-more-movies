@@ -38,3 +38,19 @@
     padding-top: 8rem;
   }
 }
+
+@include mobile {
+  .home {
+    .upcoming-movies {
+      margin-bottom: 2.5rem;
+    }
+  }
+}
+
+@include small-mobile {
+  .home {
+    .upcoming-movies {
+      margin-bottom: 2rem;
+    }
+  }
+}

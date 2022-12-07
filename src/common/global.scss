@@ -1,8 +1,13 @@
 @import "./colors.scss";
+@import "./mixins.scss";
 
 * {
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -49,4 +54,10 @@ ul {
   width: 1px;
   height: 1px;
   clip: rect(0 0 0 0);
+}
+
+@include small-mobile {
+  .container {
+    padding: 0 10px;
+  }
 }

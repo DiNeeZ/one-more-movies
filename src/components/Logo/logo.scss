@@ -50,7 +50,11 @@
 }
 
 @include mobile {
-  .logo__text {
-    display: none;
+  .logo {
+    margin-right: 0;
+
+    &__text {
+      display: none;
+    }
   }
 }
