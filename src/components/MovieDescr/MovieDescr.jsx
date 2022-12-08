@@ -2,9 +2,10 @@ import Genres from '../Genres/Genres'
 import { GoPrimitiveDot } from 'react-icons/go'
 import { FaStar, FaUser } from 'react-icons/fa'
 import { transformDate } from '../../utils'
-import './movie-descr.scss'
 import CustomImage from '../CustomImage/CustomImage'
 import WatchTrailer from '../WatchTrailer/WatchTrailer'
+
+import './movie-descr.scss'
 
 const MovieTime = ({ details }) => {
   const hours = Math.ceil(details.runtime / 60)
@@ -44,6 +45,10 @@ const MovieDescr = ({ movie }) => {
         placeholder={movie.posterPath.preview}
         alt={movie.title} />
       <div className='movie-descr__info'>
+        <div className='movie-descr__headings'>
+          <h2 className='movie-descr__title'>{(movie.title || movie.name)}</h2>
+          <p className='movie-descr__overview'>{movie.overview}</p>
+        </div>
         <p className='movie-descr__rating'>
           <span className='movie-descr__rating-item'>
             <FaStar className='movie-descr__icon movie-descr__icon--star' />
@@ -77,8 +82,8 @@ const MovieDescr = ({ movie }) => {
         {movie.tagline && (
           <p className='movie-descr__tagline'>"{movie.tagline}"</p>
         )}
+        <WatchTrailer movie={movie} />
       </div>
-      <WatchTrailer movie={movie} />
     </div>
   )
 }

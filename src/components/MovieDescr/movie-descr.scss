@@ -1,4 +1,5 @@
 @import "../../common/colors.scss";
+@import "../../common/mixins.scss";
 
 .movie-descr {
   display: flex;
@@ -20,6 +21,24 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+  &__headings {
+    display: none;
+  }
+
+  &__title {
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    font-size: 1.75rem;
+    color: $font-primary;
+    text-shadow: 2px 2px 3px rgba($secondary-color, 0.7);
+  }
+
+  &__overview {
+    margin-bottom: 1rem !important;
+    line-height: 1.4;
+    text-shadow: 0px 0px 3px $dark-color;
   }
 
   &__rating {
@@ -83,5 +102,60 @@
   .trailer-btn {
     width: 10.5rem;
     font-size: 0.9rem;
+    margin-top: 1.5rem;
+  }
+}
+
+@include small-tablet {
+  .movie-descr {
+    flex-direction: row;
+
+    &__info {
+      justify-content: space-between;
+    }
+    
+    &__headings {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__image {
+      height: 21rem;
+    }
+  }
+}
+
+@include mobile {
+  .movie-descr {
+    flex-direction: column;
+
+    &__info {
+      justify-content: center;
+      flex-grow: 1;
+    }
+
+    &__headings {
+      display: none;
+    }
+
+    &__image {
+      width: 100%;
+      height: auto;
+    }
+
+    .trailer-btn {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+}
+
+@include small-mobile {
+  .movie-descr {
+    flex-direction: column;
+
+    &__image {
+      width: 100%;
+      height: auto;
+    }
   }
 }

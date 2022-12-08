@@ -1,4 +1,5 @@
 @import "../../common/colors.scss";
+@import "../../common/mixins.scss";
 
 .details-page {
   position: relative;
@@ -64,6 +65,7 @@
     flex: 0 1 auto;
     flex-direction: column;
     gap: 1rem;
+
     h1,
     h2,
     h3,
@@ -113,4 +115,84 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+@include tablet {
+  .details {
+
+    &__left {
+      flex: 0 1 auto;
+    }
+
+    &__descr {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__descr-left {
+      .image-gallery {
+        width: 95%;
+        align-self: center;
+      }
+    }
+  }
+
+  .details-cast {
+
+    &__list {
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    &__item {
+      &:last-child {
+        align-self: flex-start;
+      }
+    }
+  }
+}
+
+@include small-tablet {
+
+  .details {
+    flex-direction: column;
+
+    &__title {
+      display: none;
+    }
+
+    &__overview {
+      display: none;
+    }
+  }
+
+  .details-cast {
+
+    &__list {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+}
+
+@include mobile {
+  .details {
+
+    &__title {
+      display: block;
+      font-size: 1.75rem;
+    }
+
+    &__overview {
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    &__descr-left {
+      .image-gallery {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    }
+  }
 }

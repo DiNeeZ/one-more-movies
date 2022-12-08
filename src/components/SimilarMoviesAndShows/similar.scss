@@ -1,4 +1,5 @@
 @import "../../common/colors.scss";
+@import "../../common/mixins.scss";
 
 .similar {
 
@@ -18,6 +19,24 @@
 
     &:hover {
       border-color: $border-color;
+    }
+  }
+}
+
+@include mobile {
+  .similar {
+
+    &__inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@include small-mobile {
+  .similar {
+
+    &__inner {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 }

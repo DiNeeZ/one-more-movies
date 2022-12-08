@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetImagesQuery } from '../../features/api/tmdbSlice'
+import { useMedia } from '../../hooks'
 
 import Carousel from '../Carousel/Carousel'
 import Modal from '../Modal/Modal'
@@ -16,7 +17,7 @@ const ImageGallery = () => {
   const [currentImageUrl, setCurrentImageUrl] = useState({})
   const { id, mediaType } = useParams()
   const { data: images, error, isSuccess, isLoading, isFetching, isError } = useGetImagesQuery({ id, mediaType })
-
+  const mediaQuery = useMedia()
   const getImageUrlById = (id) => {
     if (id && images) {
       return images.find(image => image.id === id).imageUrl
@@ -40,8 +41,24 @@ const ImageGallery = () => {
 
   const renderSkeleton = Array.from(Array(4).keys()).map(item => <Aspect16on9Skeleton key={item} />)
 
+  const getCarouselItemsNumber = () => {
+    switch (mediaQuery) {
+      case 'small-mobile':
+        return 1
+
+      case 'mobile':
+        return 1
+
+      case 'small-tablet':
+        return 2
+
+      default:
+        return 3
+    }
+  }
+
   const carouselSettings = {
-    numOfItems: 3,
+    numOfItems: getCarouselItemsNumber(),
     arrows: true
   }
 
