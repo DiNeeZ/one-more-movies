@@ -1,6 +1,14 @@
 @import '../../common/colors.scss';
+@import '../../common/mixins.scss';
 
 .credits {
   padding-top: 5rem;
   padding-bottom: 5rem;
+}
+
+@include small-tablet {
+
+  .credits {
+    padding-top: 8rem;
+  }
 }
