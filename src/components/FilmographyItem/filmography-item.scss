@@ -1,3 +1,5 @@
+@import "../../common/mixins";
+
 .filmography-item {
   display: flex;
   gap: 2rem;
@@ -12,11 +14,12 @@
   }
 
   &__info {
-    flex: 1 0 auto;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-right: 2rem;
+    gap: 2rem;
   }
 
   &__title {
@@ -30,12 +33,40 @@
     span {
       font-size: 0.9rem;
       &:not(:last-child)::after {
-        content: '|';
+        content: "|";
       }
     }
   }
 
   &__release-date {
     font-size: 1.2rem;
+  }
+}
+
+@include small-tablet {
+  .filmography-item {
+    gap: 1rem;
+  }
+}
+
+@include mobile {
+  .filmography-item {
+    padding-left: 1rem;
+    padding-top: 1rem;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    &__info {
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 0 1 auto;
+      gap: 1rem;
+    }
+
+    &__title {
+      font-size: 1.25rem;
+    }
   }
 }
