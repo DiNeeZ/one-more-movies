@@ -1,9 +1,9 @@
 @import "../../common/colors.scss";
+@import "../../common/mixins.scss";
 
 .pagination {
   display: flex;
   gap: 0.5rem;
-  // padding-bottom: 2rem;
 
   &__btn {
     margin: 0;
@@ -36,6 +36,17 @@
     &:hover:not(:disabled),
     &:focus:not(:disabled) {
       background-color: lighten($yellow, 10%);
+    }
+  }
+}
+
+@include mobile {
+
+  .pagination {
+    gap: 1rem;
+    
+    &__btn {
+      padding: 0.25rem 0.5rem;
     }
   }
 }
