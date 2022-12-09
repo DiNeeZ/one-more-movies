@@ -66,7 +66,6 @@ const Listing = ({ type }) => {
         {isLoading && renderSkeletons}
         {isSuccess && renderList(isOpen ? data : data.slice(0, 5))}
       </ul>
-      {/* <ListingBtn handleClick={handleClick} isOpen={isOpen} /> */}
     </section>
 
   )

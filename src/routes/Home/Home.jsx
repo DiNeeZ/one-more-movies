@@ -1,5 +1,4 @@
 import Listing from '../../components/Listing/Listing'
-// import ListingOther from '../../components/ListingOther/ListingOther'
 import PopularPersons from '../../components/PopularPersons/PopularPersons'
 import RecentlyViewed from '../../components/RecentlyViewed/RecentlyViewed'
 import UpcomingMovies from '../../components/UpcomingMovies/UpcomingMovies'
@@ -11,7 +10,6 @@ const Home = () => (
       <div className='home__content'>
         <div className='home__content-main'>
           <UpcomingMovies />
-          {/* <ListingOther /> */}
           <Listing type='movie' />
           <Listing type='tv' />
         </div>

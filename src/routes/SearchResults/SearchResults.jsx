@@ -30,8 +30,8 @@ const SearchResults = () => {
     setCurrentPage(num)
   }
 
-  const renderSkeleton = Array.from({ length: 5 }, (_, index) => index + 1)
-    .map(item => <SearchItemSkeleton key={item} />)
+  const renderSkeleton = Array.from({ length: 10 }, (_, index) => index + 1)
+    .map(item => <SearchItemSkeleton className='search-item-skeleton' key={item} />)
 
   const renderResults = (isLoading || isFetching) ? renderSkeleton :
     !data.results.length ? (
