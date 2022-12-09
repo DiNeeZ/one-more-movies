@@ -15,7 +15,9 @@ const Listing = ({ type }) => {
   const [parent, enable] = useAutoAnimate()
   const myRef = useRef(null)
 
-  const executeScroll = () => myRef.current.scrollIntoView()
+  const executeScroll = () => {
+    myRef.current.scrollIntoView({ behavior: 'smooth' })
+  }
 
   const handleClick = () => {
     if (isOpen) executeScroll()
@@ -49,7 +51,7 @@ const Listing = ({ type }) => {
       </h2>
       <ul
         className='listing__list listing__list--visible'
-        ref={parent }>
+        ref={parent}>
         {isLoading && renderSkeletons}
         {isSuccess && renderList(isOpen ? data : data.slice(0, 5))}
       </ul>
