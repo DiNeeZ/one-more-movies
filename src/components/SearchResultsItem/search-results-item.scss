@@ -84,6 +84,16 @@
 	}
 }
 
+@include tablet {
+	.search-results-item {
+		align-items: flex-start;
+	}
+
+	.known-for {
+		flex-direction: column;
+	}
+}
+
 @include mobile {
 
 	.search-results-item {

@@ -58,5 +58,13 @@
     &__title {
       font-size: 2rem;
     }
+
+    &__descr {
+      align-self: flex-start;
+    }
+
+    &__image {
+      width: 50%;
+    }
   }
 }

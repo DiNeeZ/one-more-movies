@@ -77,6 +77,14 @@
 }
 
 @include mobile {
+
+  .credits-list {
+
+    &__title {
+      font-size: 1.5rem;
+    }
+  }
+
   .credits-item {
 
     &__link {
