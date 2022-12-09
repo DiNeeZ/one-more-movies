@@ -26,13 +26,24 @@ const Listing = ({ type }) => {
   }
 
 
-  const renderList = data => data.map((mediaItem) => {
+  const renderList = data => {
+    const list = data.map((mediaItem) => {
+      return (
+        <li key={mediaItem.id}>
+          <MediaCard media={mediaItem} descr />
+        </li>
+      )
+    })
+
     return (
-      <li key={mediaItem.id}>
-        <MediaCard media={mediaItem} descr />
-      </li>
+      <>
+        {list}
+        <li className={`listing__btn listing__btn--${isOpen ? 'opened' : 'closed'}`}>
+          <ListingBtn handleClick={handleClick} isOpen={isOpen} />
+        </li>
+      </>
     )
-  })
+  }
 
   const renderSkeletons = Array.from(Array(5).keys()).map(item => (
     <li key={item}>
@@ -55,7 +66,7 @@ const Listing = ({ type }) => {
         {isLoading && renderSkeletons}
         {isSuccess && renderList(isOpen ? data : data.slice(0, 5))}
       </ul>
-      <ListingBtn handleClick={handleClick} isOpen={isOpen} />
+      {/* <ListingBtn handleClick={handleClick} isOpen={isOpen} /> */}
     </section>
 
   )
