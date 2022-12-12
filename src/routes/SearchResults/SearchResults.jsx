@@ -7,6 +7,8 @@ import { useMedia } from '../../hooks'
 import SearchResultsItem from '../../components/SearchResultsItem/SearchResultsItem'
 import Pagination from '../../components/Pagination/Pagination'
 import SearchItemSkeleton from '../../skeletons/SearchItemSkeleton'
+import ParagraphSkeleton from '../../skeletons/ParagraphSkeleton'
+import PhotoSkeleton from '../../skeletons/PhotoSkeleton'
 import nothing from '../../images/nothing-found.png'
 
 import './search-results.scss'
@@ -31,7 +33,16 @@ const SearchResults = () => {
   }
 
   const renderSkeleton = Array.from({ length: 10 }, (_, index) => index + 1)
-    .map(item => <SearchItemSkeleton className='search-item-skeleton' key={item} />)
+    .map(item => (
+      <div className='search-item-skeleton' key={item}>
+        <div className='search-item-skeleton__img'>
+          <PhotoSkeleton />
+        </div>
+        <div className='search-item-skeleton__text'>
+          <ParagraphSkeleton />
+        </div>
+      </div>
+    ))
 
   const renderResults = (isLoading || isFetching) ? renderSkeleton :
     !data.results.length ? (

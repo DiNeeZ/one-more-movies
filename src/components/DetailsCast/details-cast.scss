@@ -1,4 +1,5 @@
 @import "../../common/colors.scss";
+@import "../../common/mixins.scss";
 
 .details-cast {
   display: flex;
@@ -51,6 +52,29 @@
 
     &:hover {
     background-color: rgba($secondary-color, 0.7);
+    }
+  }
+}
+
+@include tablet {
+
+  .details-cast {
+
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      justify-items: center;
+      align-items: start;
+    }
+  }
+}
+
+@include mobile {
+
+  .details-cast {
+
+    &__list {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 }
