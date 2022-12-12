@@ -27,20 +27,22 @@ const PopularPersons = () => {
           data.slice(0, 10).map(person => (
             <li key={person.id} className='popular-persons__item'>
               <Link to={`/person/${person.id}`} className='popular-person'>
-                {
-                  person.profilePath.image ? (
-                    <CustomImage
-                      className='popular-person__image'
-                      src={person.profilePath.image}
-                      placeholder={imagePlaceholder}
-                      alt={person.name} />
-                  ) : (
-                    <img
-                      className='popular-person__image popular-person__image--placeholder'
-                      src={imagePlaceholder}
-                      alt={person.name} />
-                  )
-                }
+                <div className='popular-person__image-wrapper'>
+                  {
+                    person.profilePath.image ? (
+                      <CustomImage
+                        className='popular-person__image'
+                        src={person.profilePath.image}
+                        placeholder={imagePlaceholder}
+                        alt={person.name} />
+                    ) : (
+                      <img
+                        className='popular-person__image popular-person__image--placeholder'
+                        src={imagePlaceholder}
+                        alt={person.name} />
+                    )
+                  }
+                </div>
                 <div className='popular-person__info person-info'>
                   <div className='person-info__name'>{person.name}</div>
                   <div className='person-info__role'>{person.knownForDepartment}</div>
