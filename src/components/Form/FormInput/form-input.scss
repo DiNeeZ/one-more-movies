@@ -1,0 +1,55 @@
+@import '../../../common/colors.scss';
+
+.form-input {
+	width: 100%;
+	position: relative;
+
+	&.shrink {
+		.form-input__label {
+			top: 0.5rem;
+			font-size: 0.75rem;
+			color: $font-primary;
+		}
+	}
+
+	&:focus-within {
+		.form-input__label {
+			top: 0.5rem;
+			font-size: 0.75rem;
+			color: $font-primary;
+		}
+	}
+
+	&__label {
+		color: $yellow;
+		font-size: 1rem;
+		font-weight: normal;
+		position: absolute;
+		pointer-events: none;
+		left: 0.3rem;
+		top: 2rem;
+		transition: 300ms ease all;
+	}
+
+	&__input {
+		background: none;
+		color: $font-primary;
+		font-size: 1.125rem;
+		padding: 0.6rem 0.6rem 0.6rem 0.3rem;
+		display: block;
+		width: 100%;
+		border: none;
+		border-radius: 0;
+		border-bottom: 1px solid $soft-red;
+		margin: 1.5rem 0;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__input[type='password'] {
+		letter-spacing: 0.3em;
+	}
+
+}

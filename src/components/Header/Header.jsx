@@ -12,11 +12,11 @@ const Header = () => {
         <nav className='header__nav'>
           <Link
             className='header__nav-link header__nav-link--login'
-            to='/'>Login</Link>
+            to='/auth'>Login</Link>
           <span>/</span>
           <Link
             className='header__nav-link header__nav-link--signin'
-            to='/'>Sign In</Link>
+            to='/auth'>Sign In</Link>
         </nav>
       </div>
     </header>

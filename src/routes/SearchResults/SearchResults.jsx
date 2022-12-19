@@ -6,7 +6,6 @@ import { useMedia } from '../../hooks'
 
 import SearchResultsItem from '../../components/SearchResultsItem/SearchResultsItem'
 import Pagination from '../../components/Pagination/Pagination'
-import SearchItemSkeleton from '../../skeletons/SearchItemSkeleton'
 import ParagraphSkeleton from '../../skeletons/ParagraphSkeleton'
 import PhotoSkeleton from '../../skeletons/PhotoSkeleton'
 import nothing from '../../images/nothing-found.png'
