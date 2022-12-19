@@ -22,6 +22,7 @@ const Form = () => {
 
 	return (
 		<form className='form'>
+			
 			<FormInput
 				label='Email'
 				value={email}

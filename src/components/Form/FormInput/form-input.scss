@@ -6,17 +6,23 @@
 
 	&.shrink {
 		.form-input__label {
-			top: 0.5rem;
+			top: 0;
+			left: 0.5rem;
 			font-size: 0.75rem;
 			color: $font-primary;
+			background-color: $primary-color;
+			padding: 0 0.25rem;
 		}
 	}
 
 	&:focus-within {
 		.form-input__label {
-			top: 0.5rem;
+			top: 0;
+			left: 0.5rem;
 			font-size: 0.75rem;
 			color: $font-primary;
+			background-color: $primary-color;
+			padding: 0 0.25rem;
 		}
 	}
 
@@ -26,8 +32,9 @@
 		font-weight: normal;
 		position: absolute;
 		pointer-events: none;
-		left: 0.3rem;
-		top: 2rem;
+		left: 1.2rem;
+		top: 50%;
+		transform: translateY(-50%);
 		transition: 300ms ease all;
 	}
 
@@ -35,13 +42,20 @@
 		background: none;
 		color: $font-primary;
 		font-size: 1.125rem;
-		padding: 0.6rem 0.6rem 0.6rem 0.3rem;
+		padding: 1.2rem;
 		display: block;
 		width: 100%;
 		border: none;
 		border-radius: 0;
-		border-bottom: 1px solid $soft-red;
-		margin: 1.5rem 0;
+		border: 1px solid $soft-red;
+
+		&:-webkit-autofill,
+		&:-webkit-autofill:hover,
+		&:-webkit-autofill:focus {
+			-webkit-text-fill-color: $font-primary;
+			transition: background-color 5000s ease-in-out 0s;
+			caret-color: $font-primary;
+		}
 
 		&:focus {
 			outline: none;
