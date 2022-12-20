@@ -7,7 +7,7 @@ import Person from './routes/Person/Person'
 import Credits from './routes/Credits/Credits'
 import PageNotFound from './components/PageNotFound/PageNotFound'
 import SearchResults from './routes/SearchResults/SearchResults'
-import Authentication from './routes/Authentication/Authentication'
+import Auth from './routes/Auth/Auth'
 
 const App = () => {
 
@@ -21,7 +21,7 @@ const App = () => {
           <Route path='/person/:personId' element={<Person />} />
           <Route path='/credits/:mediaType/:movieId' element={<Credits />} />
           <Route path='/search-results/:query' element={<SearchResults />} />
-          <Route path='/auth' element={<Authentication />} />
+          <Route path='/auth/:type' element={<Auth />} />
         </Route>
       </Routes>
     </ScrollToTop>

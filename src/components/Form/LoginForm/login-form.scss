@@ -1,0 +1,28 @@
+@import '../../../common/mixins.scss';
+
+.login-form {
+	width: 350px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 2rem;
+}
+
+@include tablet {
+	.login-form {
+		align-items: center;
+	}
+}
+
+@include mobile {
+	.login-form {
+		width: 90%;
+		gap: 3rem;
+	}
+}
+
+@include small-mobile {
+	.login-form {
+		width: 100%;
+	}
+}

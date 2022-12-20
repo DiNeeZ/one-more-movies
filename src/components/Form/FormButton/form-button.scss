@@ -1,7 +1,9 @@
 @import '../../../common/colors.scss';
+@import '../../../common/mixins.scss';
 
 .form-button {
 	width: 12rem;
+	margin-top: 3rem;
 	padding: 0.75rem 1rem;
 	font-family: "Rajdhani", sans-serif;
 	font-size: 1.2rem;
@@ -12,11 +14,20 @@
 	cursor: pointer;
 	transition: background-color .15s ease-in-out;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		background-color: rgba($font-secondary, 0.4);
 	}
 
 	&:focus {
 		outline: none;
+		box-shadow: 2px 3px 5px rgba($dark-color, 0.6);
+	}
+}
+
+@include tablet {
+	.form-button {
+		margin-top: 0;
+		width: 100%;
 	}
 }
