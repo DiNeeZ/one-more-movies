@@ -21,7 +21,7 @@ const Authentication = () => {
 				}}>
 				<div className='auth__form'>
 					<h1 className='authentication__title'>{authType.toLocaleUpperCase()}</h1>
-					<FormButton type='google' />
+					<FormButton type='google' title={`${authType.charAt(0).toUpperCase() + authType.slice(1)} with Google`} />
 					{authType === 'register' ? <RegisterForm /> : <LoginForm />}
 				</div>
 			</div>

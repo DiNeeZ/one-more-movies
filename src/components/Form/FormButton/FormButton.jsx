@@ -5,8 +5,10 @@ import './form-button.scss'
 
 const FormButton = ({ title, type }) => {
 	return (
-		<button type={type === 'google' ? 'button' : 'submit'} className='form-button'>
-			{type === 'google' && <BsGoogle className='submit__icon' />}
+		<button
+			type={type === 'google' ? 'button' : 'submit'}
+			className={`form-button ${type === 'google' && 'google'}`}>
+			{type === 'google' && <BsGoogle className='form-button__icon' />}
 			{title}
 		</button>
 	)
