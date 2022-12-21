@@ -20,7 +20,7 @@ const Authentication = () => {
 					backgroundImage: `url(${media === 'desktop' ? authBg : ''})`
 				}}>
 				<div className='auth__form'>
-					<h1 className='authentication__title'>{authType.toLocaleUpperCase()}</h1>
+					<h1 className='auth__title'>{authType.toLocaleUpperCase()}</h1>
 					<FormButton type='google' title={`${authType.charAt(0).toUpperCase() + authType.slice(1)} with Google`} />
 					{authType === 'register' ? <RegisterForm /> : <LoginForm />}
 				</div>

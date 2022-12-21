@@ -1,5 +1,5 @@
-@import '../../common/colors.scss';
-@import '../../common/mixins.scss';
+@import "../../common/colors.scss";
+@import "../../common/mixins.scss";
 
 .auth {
 	min-height: calc(100vh - 4.3rem);
@@ -19,15 +19,42 @@
 		background-size: 35%;
 	}
 
-	&__form {
-		width: 50%;
+	.form-button.google {
+		margin: 0;
+		max-width: 350px;
 	}
 
+	&__title {
+		margin: 0;
+	}
+
+	&__form {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 2rem;
+	}
+}
+
+@include mobile {
+	.auth {
+		.form-button.google {
+			max-width: 90%;
+		}
+	}
+}
+
+@include small-mobile {
+	.auth {
+		.form-button.google {
+			max-width: 100%;
+		}
+	}
 }
 
 @include tablet {
 	.auth {
-
 		&__container {
 			justify-content: center;
 			align-items: center;

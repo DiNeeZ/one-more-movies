@@ -25,15 +25,27 @@
 		box-shadow: 2px 3px 5px rgba($dark-color, 0.6);
 	}
 
-	&.google {
-		padding-right: 3rem;
+	.form-button {
+
 	}
 
 	&__icon {
 		position: absolute;
+		height: 100%;
+		width: 40px;
+		padding: 10px;
 		top: 50%;
-		right: 1rem;
+		left: 0;
 		transform: translateY(-50%);
+		background-color: #fff;
+	}
+}
+
+@include for-desktop {
+	.form-button {
+		&.google {
+			padding-left: 3rem;
+		}
 	}
 }
 
