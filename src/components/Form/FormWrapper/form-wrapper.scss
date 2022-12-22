@@ -1,0 +1,27 @@
+@import '../../../common/mixins.scss';
+
+.form-wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1.5rem;
+}
+
+@include tablet {
+	.form-wrapper {
+		align-items: center;
+	}
+}
+
+@include mobile {
+	.form-wrapper {
+		gap: 1rem;
+	}
+}
+
+@include small-mobile {
+	.form-wrapper {
+		width: 100%;
+	}
+}

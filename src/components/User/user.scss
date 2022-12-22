@@ -1,0 +1,48 @@
+@import '../../common/colors.scss';
+
+.user {
+
+	position: relative;
+	color: currentColor;
+	cursor: pointer;
+
+	&__icon {
+		width: 1.5rem;
+		height: 1.5rem;
+		outline: none;
+
+		&:focus {
+			color: $soft-red;
+		}
+	}
+
+	&__menu {
+		position: absolute;
+		top: 140%;
+		right: 0;
+		display: flex;
+		flex-direction: column;
+		background-color: $primary-color;
+		box-shadow: 1px 1px 10px 0px $dark-color;
+		color: $font-primary;
+	}
+}
+
+.menu-item {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	outline: none;
+
+	&:hover {
+		background-color: darken($primary-color, 5%);
+	}
+
+	&:focus {
+		color: $soft-red;
+		background-color: darken($primary-color, 5%);
+	}
+}

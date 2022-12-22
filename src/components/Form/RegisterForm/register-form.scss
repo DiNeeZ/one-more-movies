@@ -1,31 +1,68 @@
 @import '../../../common/colors.scss';
 @import '../../../common/mixins.scss';
 
-.register-form {
-	position: relative;
-	width: 350px;
+.register-container {
+	width: 320px;
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
-	gap: 2rem;
-}
+	gap: 1.5rem;
 
-@include tablet {
+	&__tip {
+		font-size: 0.9rem;
+		color: $yellow;
+	}
 
-	.register-form {
-		align-items: center;
+	&__tip-link {
+		padding-left: 0.5rem;
+		color: $soft-red;
+		outline: none;
+
+		&:focus,
+		&:hover {
+			text-decoration:underline dotted;
+		}
+	}
+
+	&__title {
+		margin: 0;
+	}
+
+	&__divider {
+		position: relative;
+		font-size: 0.9rem;
+		text-align: center;
+		color: $yellow;
+
+		&::before {
+			content: '';
+			position: absolute;
+			height: 1px;
+			width: 45%;
+			top: calc(50% - 1px);
+			left: 0;
+			background-color: currentColor;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			height: 1px;
+			width: 45%;
+			top: calc(50% - 1px);
+			right: 0;
+			background-color: currentColor;
+		}
 	}
 }
 
-@include mobile {
-	.register-form {
-		width: 90%;
-		gap: 3rem;
+@include tablet {
+	.form-container {
+		gap: 0.5rem;
 	}
 }
 
 @include small-mobile {
-	.register-form {
+	.form-container {
 		width: 100%;
 	}
 }

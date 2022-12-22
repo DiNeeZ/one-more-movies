@@ -25,24 +25,9 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: $yellow;
   }
 
-  &__nav-link {
-    color: $font-primary;
-    transition: color 0.15s ease-in-out;
-
-    &--login {
-      &:hover {
-        color: $yellow;
-      }
-    }
-
-    &--signin {
-      &:hover {
-        color: $soft-red;
-      }
-    }
-  }
 }
 
 @include small-tablet {

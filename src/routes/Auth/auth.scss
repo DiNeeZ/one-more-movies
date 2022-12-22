@@ -2,76 +2,40 @@
 @import "../../common/mixins.scss";
 
 .auth {
-	min-height: calc(100vh - 4.3rem);
+	min-height: 80vh;
+	padding-top: 6rem;
+	padding-bottom: 2rem;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 
-	&__container {
-		width: 100%;
-		height: 70vh;
+	&__container	{
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-around;
 		align-items: center;
-		gap: 1rem;
-		background-repeat: no-repeat;
-		background-position: 5rem center;
-		background-size: 35%;
+		flex: 1 0 auto;
 	}
 
-	.form-button.google {
-		margin: 0;
-		max-width: 350px;
-	}
-
-	&__title {
-		margin: 0;
-	}
-
-	&__form {
-		width: 50%;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 2rem;
-	}
-}
-
-@include mobile {
-	.auth {
-		.form-button.google {
-			max-width: 90%;
-		}
-	}
-}
-
-@include small-mobile {
-	.auth {
-		.form-button.google {
-			max-width: 100%;
-		}
+	&__bg {
+		width: 40%;
+		display: block;
+		object-fit: contain;
+		object-position: center;
 	}
 }
 
 @include tablet {
 	.auth {
-		&__container {
-			justify-content: center;
-			align-items: center;
-		}
-
-		&__form {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
+		padding-bottom: 5rem;
 	}
 }
 
-@include mobile {
+@include small-tablet {
 	.auth {
-		min-height: calc(100vh - 7.4rem);
+		padding-top: 7rem;
+
+		&__bg {
+			display: none;
+		}
 	}
 }
+

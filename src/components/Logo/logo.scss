@@ -5,7 +5,8 @@
   margin-right: 2rem;
   font-size: 1.4rem;
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     .logo__icon {
       fill: $soft-red;
       transform: rotate(360deg);
@@ -23,6 +24,7 @@
     align-items: flex-end;
     gap: 0.5rem;
     padding: 0.5rem;
+    outline: none;
   }
 
   &__icon {

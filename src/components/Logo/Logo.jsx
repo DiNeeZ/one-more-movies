@@ -5,7 +5,7 @@ import './logo.scss'
 const Logo = () => {
   return (
     <div className='logo'>
-      <Link className='logo__link' to='/'>
+      <Link aria-label='go home' className='logo__link' to='/'>
         <RiMovie2Fill className='logo__icon' />
         <span className='logo__text'>One<span>More</span>Movies</span>
       </Link>

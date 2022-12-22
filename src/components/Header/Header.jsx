@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
 import Logo from '../Logo/Logo'
 import Search from '../Search/Search'
+import User from '../User/User'
 import './header.scss'
 
 const Header = () => {
@@ -10,13 +10,7 @@ const Header = () => {
         <Logo />
         <Search />
         <nav className='header__nav'>
-          <Link
-            className='header__nav-link header__nav-link--login'
-            to='/auth/login'>Login</Link>
-          <span>/</span>
-          <Link
-            className='header__nav-link header__nav-link--signin'
-            to='/auth/register'>Register</Link>
+          <User />
         </nav>
       </div>
     </header>

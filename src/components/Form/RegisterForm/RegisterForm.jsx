@@ -1,89 +1,32 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import FormInput from '../FormInput/FormInput'
-import PasswordInput from '../PasswordInput/PasswordInput'
-import FormButton from '../FormButton/FormButton'
-import { registerValidate } from '../../../utils'
+import GoogleButton from '../../GoogleButton/GoogleButton'
+import RegisterWithEmailAndPassword from './RegisterWithEmailAndPassword/RegisterWithEmailAndPassword'
 import './register-form.scss'
 
-const defaultFormFields = {
-	displayName: '',
-	email: '',
-	password: '',
-	confirmPassword: ''
-}
 
 const RegisterForm = () => {
-	const [formFields, setFormFields] = useState(defaultFormFields)
-	const [errors, setErrors] = useState({})
-	const [isSubmitting, setIsSubmitting] = useState(false)
 
-	const navigate = useNavigate()
-	const { displayName, email, password, confirmPassword } = formFields
+	const handleGoogleRegister = () => { console.log('Register with Google') }
 
-	useEffect(() => {
-		if (Object.keys(errors).length === 0 && isSubmitting) {
-			navigate('/')
-		}
-	}, [errors, isSubmitting, navigate])
-
-	const handleChange = (e) => {
-		const { name, value } = e.target
-		setFormFields({
-			...formFields,
-			[name]: value
-		})
-	}
-
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		setErrors(registerValidate(formFields))
-		setIsSubmitting(true)
-	}
 
 	return (
-		<form
-			className='register-form'
-			onSubmit={handleSubmit}
-			noValidate={true}
-		>
-
-			<FormInput
-				label='Name'
-				value={displayName}
-				type='text'
-				name='displayName'
-				onChange={handleChange}
-				error={errors.displayName}
-			/>
-
-			<FormInput
-				label='Email'
-				value={email}
-				type='email'
-				name='email'
-				onChange={handleChange}
-				error={errors.email}
-			/>
-
-			<PasswordInput
-				name='password'
-				password={password}
-				handleChange={handleChange}
-				error={errors.password}
-			/>
-
-			<PasswordInput
-				name='confirmPassword'
-				password={confirmPassword}
-				handleChange={handleChange}
-				error={errors.confirmPassword}
-			/>
-
-			<FormButton title='Register' />
-
-		</form>
+		<div className='register-container'>
+			<h1 className='register-container__title'>Register</h1>
+			<span className='register-container__tip'>
+				Already have an account?
+				<Link
+					className='register-container__tip-link'
+					to='/auth/login'>
+					Log in
+				</Link>
+			</span>
+			<GoogleButton handleClick={handleGoogleRegister}>
+				Sign up with Google
+			</GoogleButton>
+			<div className='register-container__divider'>or</div>
+			<RegisterWithEmailAndPassword />
+		</div>
 	)
 }
 
