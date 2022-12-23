@@ -1,0 +1,28 @@
+@import '../../../common/colors.scss';
+
+.authorized {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+
+	&__avatar {
+		width: 2rem;
+		height: 2rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.2rem;
+		font-weight: 600;
+		color: $dark-color;
+		background-color: $font-secondary;
+		border-radius: 50%;
+	}
+}
+
+.authorized__menu {
+	position: absolute;
+	top: 140%;
+	right: 0;
+	display: flex;
+}

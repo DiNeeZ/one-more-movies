@@ -1,6 +1,6 @@
 import Logo from '../Logo/Logo'
 import Search from '../Search/Search'
-import User from '../User/User'
+import Navigation from '../Navigation/Navigation'
 import './header.scss'
 
 const Header = () => {
@@ -9,9 +9,7 @@ const Header = () => {
       <div className='header__container container'>
         <Logo />
         <Search />
-        <nav className='header__nav'>
-          <User />
-        </nav>
+        <Navigation />
       </div>
     </header>
   )

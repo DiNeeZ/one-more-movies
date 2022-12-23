@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaUserAlt } from 'react-icons/fa'
 import { AiOutlineLogin, AiFillEdit } from 'react-icons/ai'
-import './user.scss'
+import './unauthorized.scss'
 
 const User = () => {
 	const [open, setOpen] = useState(false)
@@ -50,11 +50,11 @@ const User = () => {
 
 	return (
 		<div
-			className='user'
+			className='unauthorized'
 			ref={menuRef}
 		>
 			<FaUserAlt
-				className='user__icon'
+				className='unauthorized__icon'
 				tabIndex={0}
 				onClick={() => setOpen(!open)}
 				onKeyDown={handleSpacebarClick}
@@ -62,10 +62,10 @@ const User = () => {
 			{
 				open && (
 					<ul
-						className='user__menu'
+						className='unauthorized__menu'
 					>
 						<li
-							className='user__menu-item menu-item'
+							className='unauthorized__menu-item menu-item'
 							tabIndex={0}
 							onClick={handleClick}
 							onKeyDown={handleEnterClick}
@@ -75,7 +75,7 @@ const User = () => {
 						</li>
 
 						<li
-							className='user__menu-item menu-item'
+							className='unauthorized__menu-item menu-item'
 							tabIndex={0}
 							onClick={handleClick}
 							onKeyDown={handleEnterClick}

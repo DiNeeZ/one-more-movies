@@ -20,14 +20,6 @@
     align-items: center;
     gap: 15rem;
   }
-
-  &__nav {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: $yellow;
-  }
-
 }
 
 @include small-tablet {

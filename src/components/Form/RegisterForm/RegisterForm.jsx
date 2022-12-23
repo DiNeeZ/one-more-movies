@@ -9,7 +9,6 @@ const RegisterForm = () => {
 
 	const handleGoogleRegister = () => { console.log('Register with Google') }
 
-
 	return (
 		<div className='register-container'>
 			<h1 className='register-container__title'>Register</h1>

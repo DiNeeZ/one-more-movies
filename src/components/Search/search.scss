@@ -4,19 +4,11 @@
 .search {
   position: relative;
   border-radius: 0.5rem;
+  background-color: $font-primary;
   transition: background-color 0.8s ease-in-out;
 
-  &:hover,
-  &:focus-within {
-    background-color: $font-primary;
-
-    .search-bar__input {
-      width: 25rem;
-    }
-
-    .search-bar__icon {
-      color: $primary-color;
-    }
+  .search-bar__input {
+    width: 100%;
   }
 }
 

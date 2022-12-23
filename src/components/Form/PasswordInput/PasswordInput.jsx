@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx'
+// import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx'
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
 import FormInput from '../FormInput/FormInput'
 import './password-input.scss'
@@ -33,8 +34,8 @@ const PasswordInput = ({ name, password, handleChange, error }) => {
 			>
 				{
 					!isPasswordVisible ?
-						<RxEyeOpen className='toggle-password__icon' /> :
-						<RxEyeClosed className='toggle-password__icon' />
+						<AiOutlineEye className='toggle-password__icon' /> :
+						<AiOutlineEyeInvisible className='toggle-password__icon' />
 				}
 			</button>
 		</div>
