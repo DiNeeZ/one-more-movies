@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setStoredUser } from '../../../../features/userSlice'
 
 import FormWrapper from '../../FormWrapper/FormWrapper'
 import FormInput from '../../FormInput/FormInput'
@@ -24,6 +26,7 @@ const RegisterWithEmailAndPassword = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields)
 	const [errors, setErrors] = useState({})
 	const [isSubmitting, setIsSubmitting] = useState(false)
+	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
 	const { displayName, email, password, confirmPassword } = formFields
@@ -38,6 +41,7 @@ const RegisterWithEmailAndPassword = () => {
 					// Creating user by email and password
 					const { user } = await createAuthUserWithEmailAndPassword(email, password)
 					await createUserDocumentFromAuth(user, { displayName })
+					dispatch(setStoredUser({ email, displayName, createdAt: new Date() }))
 					// If registration has been succesfull, then redirect to home page
 					navigate('/')
 				} catch (error) {
@@ -54,7 +58,7 @@ const RegisterWithEmailAndPassword = () => {
 		}
 
 		register()
-	}, [errors, isSubmitting, navigate, email, password, formFields, displayName])
+	}, [errors, isSubmitting, navigate, email, password, formFields, displayName, dispatch])
 
 	const handleChange = (e) => {
 		const { name, value } = e.target

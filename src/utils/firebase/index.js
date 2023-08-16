@@ -7,7 +7,8 @@ import {
   getAuth,
   // signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  onAuthStateChanged
+  onAuthStateChanged,
+  signOut
 } from 'firebase/auth'
 
 import {
@@ -48,11 +49,16 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
   if (!userAuth) return
 
+  // console.log(userAuth)
   const userDocRef = doc(db, 'users', userAuth.uid)
   const userSnapshot = await getDoc(userDocRef)
 
+  console.log(userDocRef)
+
+  console.log(additionalInformation)
+
   if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth
+    const { email, displayName } = userAuth
     const createdAt = new Date()
 
     try {
@@ -89,3 +95,5 @@ export const getUserFromFirestore = async (uid) => {
 }
 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback) 
+
+export const signOutUser = async () => await signOut(auth) 

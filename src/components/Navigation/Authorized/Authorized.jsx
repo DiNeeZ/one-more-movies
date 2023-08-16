@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
+import { signOutUser } from '../../../utils/firebase'
 import './authorized.scss'
 
-const Authorized = ({ user }) => {
+const Authorized = ({ currentUser }) => {
 	const [open, setOpen] = useState(false)
 	let menuRef = useRef()
 
@@ -15,9 +16,16 @@ const Authorized = ({ user }) => {
 		return () => document.removeEventListener('mousedown', handler)
 	})
 
-	const logOut = () => {
-		console.log('log out')
+	const logOut = async () => {
+		 await signOutUser()
 		setOpen(false)
+	}
+
+	const handleSpacebarClick = (e) => {
+		if (e.key === ' ') {
+			e.preventDefault()
+			setOpen(!open)
+		}
 	}
 
 	const handleEnterClick = (e) => {
@@ -29,11 +37,13 @@ const Authorized = ({ user }) => {
 	return (
 		<div className='authorized'>
 			<span
+				tabIndex={0}
 				className='authorized__avatar'
 				ref={menuRef}
 				onClick={() => setOpen(!open)}
+				onKeyDown={handleSpacebarClick}
 			>
-				{user.displayName.charAt(0).toUpperCase()}
+				{/* {user.displayName?.charAt(0).toUpperCase()} */}
 				{
 					open && (
 						<ul
@@ -51,7 +61,7 @@ const Authorized = ({ user }) => {
 					)
 				}
 			</span>
-			<span className='authorized__greet'>Hello, {user.displayName}!</span>
+			{/* <span className='authorized__greet'>Hello, {user?.displayName}!</span> */}
 		</div>
 	)
 }

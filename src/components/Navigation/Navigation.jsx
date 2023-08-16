@@ -9,24 +9,24 @@ import './navigation.scss'
 
 const Navigation = () => {
 	const { currentUser } = useSelector(selectUser)
-	const [user, setUser] = useState(null)
+	// const [user, setUser] = useState(null)
 
-	useEffect(() => {
-		const getUser = async (uid) => {
-			const data = await getUserFromFirestore(uid)
-			setUser(data)
-		}
+	// useEffect(() => {
+	// 	const getUser = async (uid) => {
+	// 		const data = await getUserFromFirestore(uid)
+	// 		setUser(data)
+	// 	}
 
-		if (currentUser) getUser(currentUser.uid)
-	}, [currentUser])
+	// 	if (currentUser) getUser(currentUser.uid)
+	// }, [currentUser])
 
 
 	return (
 		<nav
 			className='navigation'>
 			{
-				user ?
-					<Authorized user={user} /> :
+				currentUser ?
+					<Authorized currentUser={currentUser} /> :
 					<Unauthorized />
 			}
 		</nav>

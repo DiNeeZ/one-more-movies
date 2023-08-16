@@ -17,12 +17,43 @@
 		color: $dark-color;
 		background-color: $font-secondary;
 		border-radius: 50%;
+		outline: none;
+		border:none;
+		cursor: pointer;
+
+		&:focus,
+		&:hover {
+			background-color: darken($font-secondary, 10%);
+		}
 	}
 }
 
-.authorized__menu {
+.authorized-menu {
 	position: absolute;
 	top: 140%;
-	right: 0;
+	left: 0;
 	display: flex;
+	background-color: $primary-color;
+	box-shadow: 1px 1px 10px 0px $dark-color;
+	color: $font-primary;
+
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 1rem;
+		font-weight: 500;
+		font-size: 1rem;
+		text-transform: uppercase;
+		outline: none;
+
+		&:hover {
+			background-color: darken($primary-color, 5%);
+		}
+	
+		&:focus {
+			color: $soft-red;
+			background-color: darken($primary-color, 5%);
+		}
+	}
 }
